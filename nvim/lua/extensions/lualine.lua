@@ -16,7 +16,6 @@ local function diff_source()
   end
 end
 
-
 require('lualine').setup {
   options = {
     section_separators = { left = '', right = '' },
@@ -37,6 +36,13 @@ require('lualine').setup {
       },
     },
     lualine_c = {
+      {
+        'diagnostics',
+        sources = { 'nvim_diagnostic', 'nvim_lsp' },
+        sections = { 'error', 'warn', 'info', 'hint' },
+        symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+      },
+      { 'navic' },
     },
     lualine_x = {
       'encoding',
@@ -53,7 +59,7 @@ require('lualine').setup {
       {
         'buffers',
         buffers_color = switch_color,
-        symbols = { modified = '', alternate_file = '', directory= '' },
+        symbols = { modified = '_󰷥', alternate_file = ' ', directory= ' ' },
       },
     },
     lualine_b = {},
@@ -62,7 +68,7 @@ require('lualine').setup {
       { 'diff', symbols = { added = ' ', modeiffied = ' ', removed = ' ' }, source = diff_source },
     },
     lualine_y = {
-      { 'b:gitsigns_head', icon = { '', color = { fg = colors.orange } }, color = { fg = colors.fg } },
+      { 'b:gitsigns_head', icon = { '', color = { fg = colors.orange } }, color = { fg = colors.fg } },
     },
     lualine_z = {
       { 'tabs', tabs_color = switch_color },

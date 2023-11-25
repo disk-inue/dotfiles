@@ -11,6 +11,7 @@ local plugins = {
       'nvim-tree/nvim-web-devicons',
       'rmehri01/onenord.nvim',
       'lewis6991/gitsigns.nvim',
+      'SmiteshP/nvim-navic',
     }
   },
   { 'kevinhwang91/nvim-hlslens',
@@ -48,6 +49,62 @@ local plugins = {
       'nvim-tree/nvim-web-devicons',
       'nvim-telescope/telescope.nvim',
     }
+  },
+  {
+    'neovim/nvim-lspconfig',
+    config = function() require 'extensions.nvim-lspconfig' end,
+  },
+  {
+    'williamboman/mason.nvim',
+    config = function() require 'extensions.mason' end,
+    dependencies = {
+      'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig',
+      'hrsh7th/cmp-nvim-lsp',
+    },
+  },
+  {
+    'SmiteshP/nvim-navic',
+    config = function() require 'extensions.nvim-navic' end,
+    dependencies = {
+      'neovim/nvim-lspconfig',
+    },
+  },
+  {
+    'SmiteshP/nvim-navbuddy',
+    config = function() require 'extensions.nvim-navbuddy' end,
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'SmiteshP/nvim-navic',
+      'MunifTanjim/nui.nvim',
+      { 'numToStr/Comment.nvim', config = function() require 'extensions.comment' end },
+      'nvim-telescope/telescope.nvim',
+    },
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    config = function() require 'extensions.nvim-cmp' end,
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        build = 'make install_jsregexp',
+        config = function() require 'extensions.luasnip' end,
+        dependencies = {
+          'saadparwaiz1/cmp_luasnip',
+          'rafamadriz/friendly-snippets',
+        },
+      },
+      {
+        'zbirenbaum/copilot-cmp',
+        config = function() require('copilot_cmp').setup()  end,
+      },
+    },
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Takeoff',
+    config = function() require 'extensions.copilot' end,
   },
 }
 
