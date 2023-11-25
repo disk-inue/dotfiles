@@ -7,7 +7,11 @@ local plugins = {
   },
   { 'nvim-lualine/lualine.nvim',
     config = function() require 'extensions.lualine' end,
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    dependencies = { 
+      'nvim-tree/nvim-web-devicons',
+      'rmehri01/onenord.nvim',
+      'lewis6991/gitsigns.nvim',
+    }
   },
   { 'kevinhwang91/nvim-hlslens',
     config = function() require 'extensions.nvim-hlslens' end,
