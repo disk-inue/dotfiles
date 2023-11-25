@@ -25,6 +25,23 @@ local plugins = {
       'kevinhwang91/nvim-hlslens','lewis6991/gitsigns.nvim'
     }
   },
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    config = function() require 'extensions.telescope' end,
+    dependencies = { 
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      {
+        'prochri/telescope-all-recent.nvim',
+        config = function() require 'extensions.telescope-all-recent' end,
+        dependencies = {
+          'nvim-telescope/telescope.nvim',
+          'kkharji/sqlite.lua',
+        },
+      },
+    },
+  },
 }
 
 local opts = {
