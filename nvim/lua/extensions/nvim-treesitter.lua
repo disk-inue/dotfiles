@@ -1,5 +1,8 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua' },
+  ensure_installed = {
+    'bash', 'comment', 'css', 'csv', 'dockerfile', 'go', 'graphql', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'markdown', 'mermaid', 'prisma',
+    'python', 'ruby', 'rust', 'sql', 'ssh_config', 'tsx', 'typescript', 'vim', 'vimdoc',
+  },
   syc_install = true,
   auto_install = true,
 
@@ -21,4 +24,3 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
 }
-      

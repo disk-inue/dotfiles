@@ -63,7 +63,7 @@ require('lualine').setup {
       {
         'buffers',
         buffers_color = switch_color,
-        symbols = { modified = '_󰷥', alternate_file = ' ', directory= ' ' },
+        symbols = { modified = '_󰷥', alternate_file = ' ', directory = ' ' },
       },
     },
     lualine_b = {},
@@ -81,3 +81,4 @@ require('lualine').setup {
 }
 
 vim.api.nvim_set_option('showmode', false)
+

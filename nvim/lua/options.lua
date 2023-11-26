@@ -24,4 +24,3 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     vim.api.nvim_buf_set_option(0, 'expandtab', true)
   end
 })
-

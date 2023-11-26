@@ -15,4 +15,3 @@ vim.keymap.set('n', 'gn', function() trouble.next { skip_groups = true, jump = t
 vim.keymap.set('n', 'gp', function() trouble.previous { skip_groups = true, jump = true } end)
 vim.keymap.set('n', 'gF', function() trouble.first { skip_groups = true, jump = true } end)
 vim.keymap.set('n', 'gL', function() trouble.last { skip_groups = true, jump = true } end)
-

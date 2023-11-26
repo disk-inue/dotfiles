@@ -25,7 +25,7 @@ local function actionsMenu(nd)
   }
 
   require('telescope.pickers')
-    .new({ prompt_title = 'Command', layout_config = { width = 0.3, height = 0.5 } }, default_options):find()
+      .new({ prompt_title = 'Command', layout_config = { width = 0.3, height = 0.5 } }, default_options):find()
 end
 
 local api = require 'nvim-tree.api'
@@ -83,9 +83,9 @@ local command = {
   { 'y',     fs.copy.filename,               'Copy Name' },
   { 'Y',     fs.copy.relative_path,          'Copy Relative Path' },
 
---{ '<2-LeftMouse>',  node.open.edit,        'Open' },
+  --{ '<2-LeftMouse>',  node.open.edit,        'Open' },
 
-  { '<Space>', actionsMenu,                  'Command' },
+  --{ '<Space>', actionsMenu,                  'Command' },
 }
 
 local function createTreeActions()
@@ -108,7 +108,6 @@ function M.on_attach(bufnr)
       vim.keymap.set('n', cmd[1], cmd[2], opts(cmd[3]))
     end
   end
-
 end
 
 return M

@@ -1,37 +1,44 @@
 local plugins = {
-  { 'nvim-treesitter/nvim-treesitter',
+  {
+    'nvim-treesitter/nvim-treesitter',
     config = function() require 'extensions.nvim-treesitter' end,
   },
-  { 'rmehri01/onenord.nvim',
+  {
+    'rmehri01/onenord.nvim',
     lazy = true,
     priority = 1000,
     config = function() require 'extensions.onenord' end,
   },
-  { 'nvim-lualine/lualine.nvim',
+  {
+    'nvim-lualine/lualine.nvim',
     config = function() require 'extensions.lualine' end,
-    dependencies = { 
+    dependencies = {
       'nvim-tree/nvim-web-devicons',
       'rmehri01/onenord.nvim',
       'lewis6991/gitsigns.nvim',
       'SmiteshP/nvim-navic',
     }
   },
-  { 'kevinhwang91/nvim-hlslens',
+  {
+    'kevinhwang91/nvim-hlslens',
     config = function() require 'extensions.nvim-hlslens' end,
   },
-  { 'lewis6991/gitsigns.nvim',
+  {
+    'lewis6991/gitsigns.nvim',
     config = function() require 'extensions.gitsigns' end,
   },
-  { 'petertriho/nvim-scrollbar',
+  {
+    'petertriho/nvim-scrollbar',
     config = function() require 'extensions.nvim-scrollbar' end,
     dependencies = {
-      'kevinhwang91/nvim-hlslens','lewis6991/gitsigns.nvim'
+      'kevinhwang91/nvim-hlslens', 'lewis6991/gitsigns.nvim'
     }
   },
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.4',
     config = function() require 'extensions.telescope' end,
-    dependencies = { 
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -45,7 +52,8 @@ local plugins = {
       'kkharji/sqlite.lua',
     },
   },
-  { 'nvim-tree/nvim-tree.lua',
+  {
+    'nvim-tree/nvim-tree.lua',
     config = function() require 'extensions.nvim-tree' end,
     dependencies = {
       'nvim-tree/nvim-web-devicons',
@@ -81,8 +89,8 @@ local plugins = {
       'nvim-telescope/telescope.nvim',
     },
   },
-  { 
-    'numToStr/Comment.nvim', 
+  {
+    'numToStr/Comment.nvim',
     config = function() require 'extensions.comment' end,
     dependencies = {
       'SmiteshP/nvim-navbuddy',
@@ -113,7 +121,7 @@ local plugins = {
   {
     'zbirenbaum/copilot-cmp',
     cmd = 'Takeoff',
-    config = function() require('copilot_cmp').setup()  end,
+    config = function() require('copilot_cmp').setup() end,
     dependencies = {
       'hrsh7th/nvim-cmp',
     },
@@ -132,12 +140,12 @@ local plugins = {
   },
   {
     'folke/trouble.nvim',
-    config = function () require 'extensions.trouble' end,
+    config = function() require 'extensions.trouble' end,
     dependencies = 'nvim-tree/nvim-web-devicons',
   },
   {
     'rcarriga/nvim-notify',
-    config = function () require 'extensions.nvim-notify' end,
+    config = function() require 'extensions.nvim-notify' end,
   },
 }
 
@@ -181,3 +189,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(plugins, opts)
+

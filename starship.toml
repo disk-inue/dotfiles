@@ -17,6 +17,8 @@ $os\
 [](fg:#88C0D0)\
 \n$character"""
 
+add_newline = false
+
 [fill]
 symbol = ' '
 
