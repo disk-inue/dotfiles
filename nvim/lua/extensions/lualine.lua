@@ -45,7 +45,11 @@ require('lualine').setup {
       { 'navic' },
     },
     lualine_x = {
-      'encoding',
+      {
+        require('lazy.status').updates,
+        cond = require('lazy.status').has_updates,
+        color = { fg = '#ff9364' },
+      },
     },
     lualine_y = {
       { 'filetype', color = { fg = colors.fg } },

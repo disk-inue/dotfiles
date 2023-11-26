@@ -17,7 +17,7 @@ config.key_tables = require('keybinds').key_tables
 config.leader = { key = "e", mods = "CTRL", timeout_milliseconds = 2000 }
 
 -- colors
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "nord"
 config.window_background_opacity = 0.93
 
 -- font
@@ -25,7 +25,7 @@ config.font = require("wezterm").font("Firge35Nerd Console")
 config.font_size = 14.0
 config.window_frame = {
   font = wezterm.font { family ='Roboto', weight = 'Bold' },
-  font_size = 8.0,
+  font_size = 10.0,
 }
 
 -- status

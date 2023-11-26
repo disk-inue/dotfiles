@@ -3,14 +3,14 @@ local wezterm = require 'wezterm';
 -- toggle-font-size keybind event
 wezterm.on('toggle-font-size', function(window, pane)
   local overrides = window:get_config_overrides() or {}
-  overrides.font_size = not overrides.font_size and 10.0 or nil
+  overrides.font_size = not overrides.font_size and 12.0 or nil
 
   window:set_config_overrides(overrides)
 end)
 
 -- toggle-font-size dpi event
 local DPI_CHANGE_NUM = 140
-local DPI_CHANGE_FONT_SIZE = 10.0
+local DPI_CHANGE_FONT_SIZE = 12.0
 local prev_dpi = 0
 
 wezterm.on('window-focus-changed', function(window, pane)

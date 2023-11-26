@@ -3,6 +3,8 @@ local plugins = {
     config = function() require 'extensions.nvim-treesitter' end,
   },
   { 'rmehri01/onenord.nvim',
+    lazy = true,
+    priority = 1000,
     config = function() require 'extensions.onenord' end,
   },
   { 'nvim-lualine/lualine.nvim',
@@ -33,14 +35,14 @@ local plugins = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-      {
-        'prochri/telescope-all-recent.nvim',
-        config = function() require 'extensions.telescope-all-recent' end,
-        dependencies = {
-          'nvim-telescope/telescope.nvim',
-          'kkharji/sqlite.lua',
-        },
-      },
+    },
+  },
+  {
+    'prochri/telescope-all-recent.nvim',
+    config = function() require 'extensions.telescope-all-recent' end,
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'kkharji/sqlite.lua',
     },
   },
   { 'nvim-tree/nvim-tree.lua',
@@ -76,8 +78,14 @@ local plugins = {
       'neovim/nvim-lspconfig',
       'SmiteshP/nvim-navic',
       'MunifTanjim/nui.nvim',
-      { 'numToStr/Comment.nvim', config = function() require 'extensions.comment' end },
       'nvim-telescope/telescope.nvim',
+    },
+  },
+  { 
+    'numToStr/Comment.nvim', 
+    config = function() require 'extensions.comment' end,
+    dependencies = {
+      'SmiteshP/nvim-navbuddy',
     },
   },
   {
@@ -85,20 +93,29 @@ local plugins = {
     config = function() require 'extensions.nvim-cmp' end,
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
-      {
-        'L3MON4D3/LuaSnip',
-        version = 'v2.*',
-        build = 'make install_jsregexp',
-        config = function() require 'extensions.luasnip' end,
-        dependencies = {
-          'saadparwaiz1/cmp_luasnip',
-          'rafamadriz/friendly-snippets',
-        },
-      },
-      {
-        'zbirenbaum/copilot-cmp',
-        config = function() require('copilot_cmp').setup()  end,
-      },
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-path',
+      'onsails/lspkind-nvim',
+    },
+  },
+  {
+    'L3MON4D3/LuaSnip',
+    version = 'v2.*',
+    build = 'make install_jsregexp',
+    config = function() require 'extensions.luasnip' end,
+    dependencies = {
+      'hrsh7th/nvim-cmp',
+      'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets',
+    },
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    cmd = 'Takeoff',
+    config = function() require('copilot_cmp').setup()  end,
+    dependencies = {
+      'hrsh7th/nvim-cmp',
     },
   },
   {
@@ -106,9 +123,28 @@ local plugins = {
     cmd = 'Takeoff',
     config = function() require 'extensions.copilot' end,
   },
+  {
+    "j-hui/fidget.nvim",
+    config = function() require 'extensions.fidget' end,
+    dependencies = {
+      'neovim/nvim-lspconfig',
+    },
+  },
+  {
+    'folke/trouble.nvim',
+    config = function () require 'extensions.trouble' end,
+    dependencies = 'nvim-tree/nvim-web-devicons',
+  },
+  {
+    'rcarriga/nvim-notify',
+    config = function () require 'extensions.nvim-notify' end,
+  },
 }
 
 local opts = {
+  checker = {
+    enabled = true,
+  },
   preformance = {
     cache = {
       enabled = true,
@@ -127,8 +163,8 @@ local opts = {
         "tutor",
         "zipPlugin",
       },
-    }
-  }
+    },
+  },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
