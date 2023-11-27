@@ -1,16 +1,18 @@
 local plugins = {
   {
     'nvim-treesitter/nvim-treesitter',
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.nvim-treesitter' end,
   },
   {
     'rmehri01/onenord.nvim',
-    lazy = true,
+    event = { 'VimEnter' },
     priority = 1000,
     config = function() require 'extensions.onenord' end,
   },
   {
     'nvim-lualine/lualine.nvim',
+    event = { 'VimEnter' },
     config = function() require 'extensions.lualine' end,
     dependencies = {
       'nvim-tree/nvim-web-devicons',
@@ -21,14 +23,17 @@ local plugins = {
   },
   {
     'kevinhwang91/nvim-hlslens',
+    event = { 'FilterWritePre' },
     config = function() require 'extensions.nvim-hlslens' end,
   },
   {
     'lewis6991/gitsigns.nvim',
+    event = { 'BufReadPre' },
     config = function() require 'extensions.gitsigns' end,
   },
   {
     'petertriho/nvim-scrollbar',
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.nvim-scrollbar' end,
     dependencies = {
       'kevinhwang91/nvim-hlslens', 'lewis6991/gitsigns.nvim'
@@ -36,6 +41,9 @@ local plugins = {
   },
   {
     'nvim-telescope/telescope.nvim',
+    keys = {
+      '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh'
+    },
     tag = '0.1.4',
     config = function() require 'extensions.telescope' end,
     dependencies = {
@@ -46,6 +54,9 @@ local plugins = {
   },
   {
     'prochri/telescope-all-recent.nvim',
+    keys = {
+      '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh',
+    },
     config = function() require 'extensions.telescope-all-recent' end,
     dependencies = {
       'nvim-telescope/telescope.nvim',
@@ -54,6 +65,9 @@ local plugins = {
   },
   {
     'nvim-tree/nvim-tree.lua',
+    keys = {
+      '<leader>ex',
+    },
     config = function() require 'extensions.nvim-tree' end,
     dependencies = {
       'nvim-tree/nvim-web-devicons',
@@ -62,18 +76,22 @@ local plugins = {
   },
   {
     'neovim/nvim-lspconfig',
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.nvim-lspconfig' end,
   },
   {
     'williamboman/mason.nvim',
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.mason' end,
     dependencies = {
-      'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig',
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
     },
   },
   {
     'SmiteshP/nvim-navic',
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.nvim-navic' end,
     dependencies = {
       'neovim/nvim-lspconfig',
@@ -81,6 +99,9 @@ local plugins = {
   },
   {
     'SmiteshP/nvim-navbuddy',
+    keys = {
+      '<leader>nb',
+    },
     config = function() require 'extensions.nvim-navbuddy' end,
     dependencies = {
       'neovim/nvim-lspconfig',
@@ -91,6 +112,9 @@ local plugins = {
   },
   {
     'numToStr/Comment.nvim',
+    keys = {
+      '<leader>nb',
+    },
     config = function() require 'extensions.comment' end,
     dependencies = {
       'SmiteshP/nvim-navbuddy',
@@ -98,6 +122,7 @@ local plugins = {
   },
   {
     'hrsh7th/nvim-cmp',
+    event = { 'VimEnter' },
     config = function() require 'extensions.nvim-cmp' end,
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
@@ -105,10 +130,12 @@ local plugins = {
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-path',
       'onsails/lspkind-nvim',
+      'L3MON4D3/LuaSnip',
     },
   },
   {
     'L3MON4D3/LuaSnip',
+    event = { 'InsertEnter' },
     version = 'v2.*',
     build = 'make install_jsregexp',
     config = function() require 'extensions.luasnip' end,
@@ -120,19 +147,21 @@ local plugins = {
   },
   {
     'zbirenbaum/copilot-cmp',
-    cmd = 'Takeoff',
+    event = { 'InsertEnter' },
     config = function() require('copilot_cmp').setup() end,
     dependencies = {
       'hrsh7th/nvim-cmp',
+      'zbirenbaum/copilot.lua',
     },
   },
   {
     'zbirenbaum/copilot.lua',
-    cmd = 'Takeoff',
+    event = { 'InsertEnter' },
     config = function() require 'extensions.copilot' end,
   },
   {
     "j-hui/fidget.nvim",
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.fidget' end,
     dependencies = {
       'neovim/nvim-lspconfig',
@@ -140,16 +169,34 @@ local plugins = {
   },
   {
     'folke/trouble.nvim',
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.trouble' end,
     dependencies = 'nvim-tree/nvim-web-devicons',
   },
   {
     'rcarriga/nvim-notify',
+    event = { "VimEnter" },
     config = function() require 'extensions.nvim-notify' end,
+  },
+  {
+    "folke/noice.nvim",
+    event = { "VimEnter" },
+    config = function() require 'extensions.noice' end,
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
   },
 }
 
 local opts = {
+  defaults = {
+    lazy = true,
+  },
   checker = {
     enabled = true,
   },
@@ -189,4 +236,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(plugins, opts)
-

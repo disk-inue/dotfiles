@@ -18,8 +18,8 @@ vim.keymap.set('n', 'X', '"_X')
 vim.keymap.set('n', 's', '"_s')
 
 -- leader
-vim.api.nvim_set_var('mapleader', ' ')
-vim.api.nvim_set_var('maplocalleader', '_')
+vim.api.nvim_set_var('mapleader', ',')
+vim.api.nvim_set_var('maplocalleader', '\\')
 
 -- window
 vim.keymap.set('n', '<leader>h', '<C-w><C-h>')
