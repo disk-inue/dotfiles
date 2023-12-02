@@ -61,3 +61,6 @@ abbr -S gmg='git merge' >>/dev/null
 abbr -S gpsh='git push' >>/dev/null
 abbr -S lg='lazygit' >>/dev/null
 
+# starship
+eval "$(starship init zsh)"
+
