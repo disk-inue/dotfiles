@@ -42,3 +42,22 @@ antigen theme robbyrussell
 # Tell antigen that you're done
 antigen apply
 
+# alias
+alias ls='ls -F --color=auto'
+alias vim='nvim'
+abbr -S ll='ls -l' >>/dev/null
+abbr -S la='ls -A' >>/dev/null
+abbr -S lla='ls -l -A' >>/dev/null
+abbr -S v='vim' >>/dev/null
+abbr -S g='git' >>/dev/null
+abbr -S gst='git status' >>/dev/null
+abbr -S gsw='git switch' >>/dev/null
+abbr -S gbr='git branch' >>/dev/null
+abbr -S gfe='git fetch' >>/dev/null
+abbr -S gpl='git pull' >>/dev/null
+abbr -S gad='git add' >>/dev/null
+abbr -S gcm='git commit' >>/dev/null
+abbr -S gmg='git merge' >>/dev/null
+abbr -S gpsh='git push' >>/dev/null
+abbr -S lg='lazygit' >>/dev/null
+
