@@ -10,8 +10,15 @@ local has_words_before = function()
 end
 
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  window = {
+  },
   mapping = map.preset.insert {
-    ['<C-d>'] = map.scroll_docs(-4),
+    ['<C-b>'] = map.scroll_docs(-4),
     ['<C-f>'] = map.scroll_docs(4),
     ['<C-Space>'] = map.complete(),
     ['<C-e>'] = map.abort(),
@@ -19,42 +26,55 @@ cmp.setup {
     ['<Tab>'] = map(act.tab, { 'i', 's' }),
     ['<S-Tab>'] = map(act.shift_tab, { 'i', 's' }),
   },
-  sources = cmp.config.sources {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+  }, {
     { name = 'copilot' },
+  }, {
     { name = 'buffer' },
+  }, {
     { name = 'path' },
-  },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
+  }),
   formatting = {
     format = require('lspkind').cmp_format {
-      mode = 'symbol',
+      mode = 'symbol', -- show only symbol annotations
+      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
       preset = 'codicons',
       symbol_map = { Copilot = '' },
     },
   },
 }
 
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources {
-    { name = 'cmdline' },
-    { name = 'path' },
-  },
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+  }, {
+    { name = 'buffer' },
+  })
 })
 
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
-  sources = cmp.config.sources {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
     {
       name = 'buffer',
       option = {
         keyword_pattern = [[\k\+]],
       },
-    },
-  },
+    }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })

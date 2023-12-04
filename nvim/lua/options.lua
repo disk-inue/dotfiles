@@ -16,11 +16,11 @@ vim.api.nvim_win_set_option(0, 'list', true)
 -- vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 
 -- buffer
-vim.api.nvim_buf_set_option(0, 'swapfile', true)
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = '*',
   group = vim.api.nvim_create_augroup('buffer_set_options', {}),
   callback = function()
+    vim.api.nvim_buf_set_option(0, 'swapfile', true)
     vim.api.nvim_buf_set_option(0, 'tabstop', 2)
     vim.api.nvim_buf_set_option(0, 'shiftwidth', 0)
     vim.api.nvim_buf_set_option(0, 'expandtab', true)

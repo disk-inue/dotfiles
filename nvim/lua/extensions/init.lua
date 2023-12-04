@@ -24,12 +24,18 @@ local plugins = {
   {
     'kevinhwang91/nvim-hlslens',
     event = { 'FilterWritePre' },
-    config = function() require 'extensions.nvim-hlslens' end,
+    config = function()
+      require("scrollbar.handlers.search").setup(
+        require 'extensions.nvim-hlslens'
+      )
+    end,
   },
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre' },
-    config = function() require 'extensions.gitsigns' end,
+    config = function()
+      require 'extensions.gitsigns'
+    end,
   },
   {
     'petertriho/nvim-scrollbar',
@@ -112,23 +118,19 @@ local plugins = {
   },
   {
     'numToStr/Comment.nvim',
-    keys = {
-      '<leader>nb',
-    },
+    event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.comment' end,
-    dependencies = {
-      'SmiteshP/nvim-navbuddy',
-    },
   },
   {
     'hrsh7th/nvim-cmp',
     event = { 'VimEnter' },
     config = function() require 'extensions.nvim-cmp' end,
     dependencies = {
+      'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
       'onsails/lspkind-nvim',
       'L3MON4D3/LuaSnip',
     },

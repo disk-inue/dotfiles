@@ -1,5 +1,8 @@
 require('nvim-tree').setup {
-  sort_by = 'extension',
+  sort = {
+    -- sorter = 'extension',
+    sorter = 'case_sensitive',
+  },
 
   view = {
     width = '20%',
@@ -8,6 +11,7 @@ require('nvim-tree').setup {
   },
 
   renderer = {
+    group_empty = true,
     highlight_git = true,
     highlight_opened_files = 'name',
     icons = {
@@ -20,10 +24,14 @@ require('nvim-tree').setup {
     },
   },
 
+  filters = {
+    git_ignored = false,
+  },
+
   actions = {
     expand_all = {
       max_folder_discovery = 100,
-      exclude = { '.git', 'target', 'build' },
+      exclude = { '.git' },
     },
   },
 
