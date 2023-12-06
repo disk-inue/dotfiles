@@ -1,6 +1,6 @@
-local colors = require('onenord.colors').load()
+local colors = require("onenord.colors").load()
 
-require('scrollbar').setup({
+require("scrollbar").setup({
   handle = {
     color = colors.bg_highlight,
   },
@@ -11,7 +11,7 @@ require('scrollbar').setup({
     Info = { color = colors.info },
     Hint = { color = colors.hint },
     Misc = { color = colors.purple },
-  }
+  },
 })
 -- require('scrollbar.handlers.search').setup()
-require('scrollbar.handlers.gitsigns').setup()
+require("scrollbar.handlers.gitsigns").setup()

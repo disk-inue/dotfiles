@@ -1,17 +1,17 @@
-local colors = require('onenord.colors').load()
+local colors = require("onenord.colors").load()
 
-require('onenord').setup {
-  theme = 'dark', -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
+require("onenord").setup({
+  theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
   borders = true, -- Split window borders
   fade_nc = false, -- Fade non-current windows, making them more distinguishable
   -- Style that is applied to various groups: see `highlight-args` for options
   styles = {
-    comments = 'NONE',
-    strings = 'NONE',
-    keywords = 'bold',
-    functions = 'bold',
-    variables = 'NONE',
-    diagnostics = 'underline',
+    comments = "NONE",
+    strings = "NONE",
+    keywords = "bold",
+    functions = "bold",
+    variables = "NONE",
+    diagnostics = "underline",
   },
 
   disable = {
@@ -28,14 +28,14 @@ require('onenord').setup {
 
   -- Overwrite default highlight groups
   custom_highlights = {
-    MatchParen = { fg = colors.none, bg = colors.none, style = 'bold,underline' },
-    GitSignsAddLnInline = { fg = colors.none, bg = colors.none, style = 'underline' },
-    GitSignsChangeLnInline = { fg = colors.none, bg = colors.none, style = 'underline' },
-    GitSignsDeleteLnInline = { fg = colors.none, bg = colors.none, style = 'bold,underline' },
+    MatchParen = { fg = colors.none, bg = colors.none, style = "bold,underline" },
+    GitSignsAddLnInline = { fg = colors.none, bg = colors.none, style = "underline" },
+    GitSignsChangeLnInline = { fg = colors.none, bg = colors.none, style = "underline" },
+    GitSignsDeleteLnInline = { fg = colors.none, bg = colors.none, style = "bold,underline" },
   },
 
   -- Overwrite default colors
   custom_colors = {
-    mypink = '#FFB2CC',
+    mypink = "#FFB2CC",
   },
-}
+})

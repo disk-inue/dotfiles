@@ -1,11 +1,30 @@
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = {
-    'bash', 'comment', 'css', 'csv', 'dockerfile',
-    'go', 'graphql', 'html', 'javascript', 'jsdoc',
-    'json', 'lua', 'markdown', 'mermaid', 'prisma',
-    'python', 'ruby', 'rust', 'sql', 'ssh_config',
-    'tsx', 'typescript', 'vim', 'vimdoc',
+    "bash",
+    "comment",
+    "css",
+    "csv",
+    "dockerfile",
+    "go",
+    "graphql",
+    "html",
+    "javascript",
+    "jsdoc",
+    "json",
+    "lua",
+    "markdown",
+    "mermaid",
+    "prisma",
+    "python",
+    "ruby",
+    "rust",
+    "sql",
+    "ssh_config",
+    "tsx",
+    "typescript",
+    "vim",
+    "vimdoc",
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -30,7 +49,7 @@ require('nvim-treesitter.configs').setup {
     -- disable = { "c", "rust" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
-      local max_filesize = 100 * 1024   -- 100 KB
+      local max_filesize = 100 * 1024 -- 100 KB
       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
       if ok and stats and stats.size > max_filesize then
         return true
@@ -47,14 +66,14 @@ require('nvim-treesitter.configs').setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
     },
   },
 
   indent = {
     enable = true,
   },
-}
+})

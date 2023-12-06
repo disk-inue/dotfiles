@@ -1,5 +1,3 @@
-local fidget = require 'fidget'
-local notify = require 'notify'
+local fidget = require("fidget")
+fidget.setup({})
 
-fidget.setup {}
-fidget.notify = notify

@@ -1,2 +1,1 @@
-require 'telescope-all-recent'.setup {
-}
+require("telescope-all-recent").setup({})

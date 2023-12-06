@@ -1,24 +1,29 @@
-require('nvim-tree').setup {
+require("nvim-tree").setup({
   sort = {
     -- sorter = 'extension',
-    sorter = 'case_sensitive',
+    sorter = "case_sensitive",
   },
 
   view = {
-    width = '20%',
-    side = 'right',
-    signcolumn = 'no',
+    width = "20%",
+    side = "right",
+    signcolumn = "no",
   },
 
   renderer = {
     group_empty = true,
     highlight_git = true,
-    highlight_opened_files = 'name',
+    highlight_opened_files = "name",
     icons = {
       glyphs = {
         git = {
-          unstaged = '!', renamed = '»', untracked = '?', deleted = '✘',
-          staged = '✓', unmerged = '', ignored = '◌',
+          unstaged = "!",
+          renamed = "»",
+          untracked = "?",
+          deleted = "✘",
+          staged = "✓",
+          unmerged = "",
+          ignored = "◌",
         },
       },
     },
@@ -31,12 +36,14 @@ require('nvim-tree').setup {
   actions = {
     expand_all = {
       max_folder_discovery = 100,
-      exclude = { '.git' },
+      exclude = { ".git" },
     },
   },
 
-  on_attach = require('extensions.nvim-tree-actions').on_attach,
-}
+  on_attach = require("extensions.nvim-tree-actions").on_attach,
+})
 
-vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
-vim.keymap.set('n', '<leader>ex', vim.cmd.NvimTreeToggle)
+vim.api.nvim_create_user_command("Ex", function()
+  vim.cmd.NvimTreeToggle()
+end, {})
+vim.keymap.set("n", "<leader>ex", vim.cmd.NvimTreeToggle)

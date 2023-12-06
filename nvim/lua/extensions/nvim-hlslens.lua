@@ -1,25 +1,24 @@
 -- require('hlslens').setup({
-  -- calm_down = true,
-  -- nearest_only = true,
-  -- nearest_float_when = 'never',
+-- calm_down = true,
+-- nearest_only = true,
+-- nearest_float_when = 'never',
 -- })
 
 local config = {
   calm_down = true,
   nearest_only = true,
-  nearest_float_when = 'never',
+  nearest_float_when = "never",
 }
 
-
-vim.keymap.set({ 'n', 'x' }, '<Leader>L', function()
+vim.keymap.set({ "n", "x" }, "<Leader>L", function()
   vim.schedule(function()
-    if require('hlslens').exportLastSearchToQuickfix() then
-      vim.cmd('cw')
+    if require("hlslens").exportLastSearchToQuickfix() then
+      vim.cmd("cw")
     end
   end)
-  return ':noh<CR>'
+  return ":noh<CR>"
 end, { expr = true })
 
-vim.opt.shortmess:append 'S'
+vim.opt.shortmess:append("S")
 
 return config
