@@ -19,6 +19,4 @@ vim.keymap.set({ "n", "x" }, "<Leader>L", function()
   return ":noh<CR>"
 end, { expr = true })
 
-vim.opt.shortmess:append("S")
-
 return config

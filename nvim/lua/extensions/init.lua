@@ -245,7 +245,8 @@ local plugins = {
   },
   {
     "mrded/nvim-lsp-notify",
-    event = { "BufNewFile", "BufReadPre" },
+    event = { "VimEnter" },
+    -- event = { "BufNewFile", "BufReadPre" },
     config = function()
       require("extensions.nvim-lsp-notify")
     end,
