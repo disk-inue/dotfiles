@@ -22,11 +22,22 @@ vim.api.nvim_set_var("mapleader", ",")
 vim.api.nvim_set_var("maplocalleader", "\\")
 
 -- window
-vim.keymap.set("n", "<leader>h", "<C-w><C-h>")
-vim.keymap.set("n", "<leader>j", "<C-w><C-j>")
-vim.keymap.set("n", "<leader>k", "<C-w><C-k>")
-vim.keymap.set("n", "<leader>l", "<C-w><C-l>")
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- buffer
 vim.keymap.set("n", "<Tab>", ":bnext<CR>")
 vim.keymap.set("n", "<S-Tab>", ":bprev<CR>")
+
+-- split
+vim.keymap.set("n", "<S-j>", ":split<CR>")
+vim.keymap.set("n", "<S-l>", ":vsplit<CR>")
+
+-- move line
+vim.keymap.set({ "n", "v" }, "<C-n>", "20j")
+vim.keymap.set({ "n", "v" }, "<C-p>", "20k")
+
+-- save
+vim.keymap.set("i", "jj", "<ESC>:<C-u>w<CR>")
