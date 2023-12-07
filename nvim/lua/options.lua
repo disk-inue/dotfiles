@@ -5,6 +5,7 @@ vim.api.nvim_set_option("ignorecase", true)
 vim.api.nvim_set_option("smartcase", true)
 vim.api.nvim_set_option("inccommand", "split")
 vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.g.loaded_perl_provider = 0
 
 -- window
 vim.api.nvim_win_set_option(0, "number", true)

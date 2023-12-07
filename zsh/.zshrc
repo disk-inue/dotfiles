@@ -86,6 +86,22 @@ eval "$(nodenv init -)"
 export RBENV_ROOT="$HOME/.config/.rbenv"
 eval "$(rbenv init - zsh)"
 
+# goenv
+export GOENV_ROOT="$HOME/.config/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+
+# rust
+export RUSTUP_HOME="$HOME/.config/.cargo"
+export CARGO_HOME="$HOME/.config/.cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
+source "$HOME/.config/.cargo/env"
+
+# jenv
+export JENV_ROOT="$HOME/.config/.jenv"
+export PATH="$JENV_ROOT/bin:$PATH"
+eval "$(jenv init -)"
+
 # fzf
 [ -f ~/.local/bin/.fzf.zsh ] && source ~/.local/bin/.fzf.zsh
 

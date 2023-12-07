@@ -94,16 +94,15 @@ local plugins = {
     },
   },
   {
-    "nvim-tree/nvim-tree.lua",
+    "stevearc/oil.nvim",
     keys = {
       "<leader>ex",
     },
     config = function()
-      require("extensions.nvim-tree")
+      require("extensions.oil")
     end,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "nvim-telescope/telescope.nvim",
     },
   },
   {

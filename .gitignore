@@ -1,3 +1,7 @@
+.cargo
+.goenv
+.jenv
+.plenv
 .nodenv
 .pyenv
 .rbenv
