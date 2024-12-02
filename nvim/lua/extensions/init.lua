@@ -1,6 +1,7 @@
 local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
     event = { "BufNewFile", "BufReadPre" },
     config = function()
       require("extensions.nvim-treesitter")
@@ -217,7 +218,7 @@ local plugins = {
       require("extensions.copilot")
     end,
   },
-  --[[ {
+  {
     "j-hui/fidget.nvim",
     event = { "BufNewFile", "BufReadPre" },
     config = function()
@@ -226,7 +227,7 @@ local plugins = {
     dependencies = {
       "neovim/nvim-lspconfig",
     },
-  }, ]]
+  },
   {
     "folke/trouble.nvim",
     event = { "BufNewFile", "BufReadPre" },
@@ -275,6 +276,32 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+  },
+  {
+    "nvimdev/lspsaga.nvim",
+    event = { "BufNewFile", "BufReadPre" },
+    config = function()
+      require("extensions.lspsaga")
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("extensions.nvim-surround")
+    end,
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("extensions.nvim-autopairs")
+    end,
   },
 }
 

@@ -5,6 +5,7 @@ vim.api.nvim_set_option("ignorecase", true)
 vim.api.nvim_set_option("smartcase", true)
 vim.api.nvim_set_option("inccommand", "split")
 vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.api.nvim_set_option("spell", true)
 vim.g.loaded_perl_provider = 0
 
 -- window
@@ -21,9 +22,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = "*",
   group = vim.api.nvim_create_augroup("buffer_set_options", {}),
   callback = function()
-    vim.api.nvim_buf_set_option(0, "swapfile", true)
+    vim.api.nvim_buf_set_option(0, "swapfile", false)
     vim.api.nvim_buf_set_option(0, "tabstop", 2)
     vim.api.nvim_buf_set_option(0, "shiftwidth", 0)
     vim.api.nvim_buf_set_option(0, "expandtab", true)
+    vim.api.nvim_buf_set_option(0, "spelllang", "en_us")
   end,
 })

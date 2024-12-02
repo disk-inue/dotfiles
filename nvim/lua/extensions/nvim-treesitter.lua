@@ -23,10 +23,14 @@ require("nvim-treesitter.configs").setup({
     "rust",
     "sql",
     "ssh_config",
+    "terraform",
+    "toml",
     "tsx",
     "typescript",
     "vim",
     "vimdoc",
+    "xml",
+    "yaml",
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
