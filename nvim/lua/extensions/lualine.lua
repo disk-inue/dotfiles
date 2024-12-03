@@ -17,20 +17,18 @@ local function diff_source()
 end
 
 require("lualine").setup({
-
   options = {
-    section_separators = { left = "", right = "" },
-    -- section_separators = { left = '', right = ''},
-    component_separators = { left = "", right = "" },
-    -- component_separators = { left = '', right = ''},
     icons_enabled = true,
     theme = "auto",
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
     },
     ignore_focus = {},
     always_divide_middle = true,
+    always_show_tabline = true,
     globalstatus = true,
     refresh = {
       statusline = 1000,
@@ -43,7 +41,6 @@ require("lualine").setup({
     lualine_a = {
       "mode",
     },
-    -- lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_b = {
       {
         "filename",
@@ -54,7 +51,6 @@ require("lualine").setup({
         symbols = { modified = "_󰷥", readonly = " ", newfile = "󰄛", unnamed = "[No Name]" },
       },
     },
-    -- lualine_c = {'filename'},
     lualine_c = {
       {
         "diagnostics",
@@ -79,7 +75,6 @@ require("lualine").setup({
       },
       { "navic" },
     },
-    -- lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_x = {
       {
         require("lazy.status").updates,
@@ -89,7 +84,6 @@ require("lualine").setup({
         },
       },
     },
-    -- lualine_y = {'progress'},
     lualine_y = {
       {
         "filetype",
@@ -100,7 +94,6 @@ require("lualine").setup({
         },
       },
     },
-    -- lualine_z = {'location'},
     lualine_z = {
       {
         "fileformat",
@@ -129,40 +122,20 @@ require("lualine").setup({
     lualine_a = {
       {
         "buffers",
-        show_filename_only = true, -- Shows shortened relative path when set to false.
-        hide_filename_extension = false, -- Hide filename extension when set to true.
-        show_modified_status = true, -- Shows indicator when the buffer is modified.
-
+        show_filename_only = true,
+        hide_filename_extension = false,
+        show_modified_status = true,
         mode = 0,
-        -- 0: Shows buffer name
-        -- 1: Shows buffer index
-        -- 2: Shows buffer name + buffer index
-        -- 3: Shows buffer number
-        -- 4: Shows buffer name + buffer number
-
         max_length = vim.o.columns * 2 / 3,
-        -- Maximum width of buffers component,
-        -- it can also be a function that returns
-        -- the value of `max_length` dynamically.
-
         filetype_names = {
           TelescopePrompt = "Telescope",
           dashboard = "Dashboard",
           packer = "Packer",
           fzf = "FZF",
           alpha = "Alpha",
-        }, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
-
-        -- Automatically updates active buffer color to match color of other components (will be overidden if buffers_color is set)
+        },
         use_mode_colors = false,
-
         buffers_color = switch_color,
-        -- buffers_color = {
-        -- Same values as the general color option can be used here.
-        -- active = 'lualine_{section}_normal',     -- Color for active buffer.
-        -- inactive = 'lualine_{section}_inactive', -- Color for inactive buffer.
-        -- },
-
         symbols = {
           modified = "_󰷥",
           alternate_file = " ",
@@ -176,11 +149,6 @@ require("lualine").setup({
       {
         "diff",
         colored = true,
-        -- diff_color = {
-        -- added    = 'LuaLineDiffAdd',    -- Changes the diff's added color
-        -- modified = 'LuaLineDiffChange', -- Changes the diff's modified color
-        -- removed  = 'LuaLineDiffDelete', -- Changes the diff's removed color you
-        -- },
         symbols = {
           added = " ",
           modeiffied = " ",
