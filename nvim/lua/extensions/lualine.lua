@@ -179,5 +179,3 @@ require("lualine").setup({
   inactive_winbar = {},
   extensions = {},
 })
-
-vim.api.nvim_set_option("showmode", false)

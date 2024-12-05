@@ -6,6 +6,8 @@ vim.api.nvim_set_option("smartcase", true)
 vim.api.nvim_set_option("inccommand", "split")
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 vim.api.nvim_set_option("spell", true)
+vim.api.nvim_set_option("showmode", false)
+--[[ vim.api.nvim_set_option("shortmess", "S") ]]
 vim.g.loaded_perl_provider = 0
 
 -- window
