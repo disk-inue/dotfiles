@@ -1,5 +1,4 @@
 local actions = require("nvim-navbuddy.actions")
-
 require("nvim-navbuddy").setup({
   window = {
     size = { height = "40%", width = "100%" },
