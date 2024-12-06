@@ -10,7 +10,7 @@ local plugins = {
       require("extensions.oil")
     end,
     dependencies = {
-      "echasnovski/mini.icons",
+      "nvim-tree/nvim-web-devicons",
     },
   },
   {
@@ -27,6 +27,9 @@ local plugins = {
     config = function()
       require("extensions.nvim-treesitter-context")
     end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
   },
   {
     "rmehri01/onenord.nvim",
@@ -85,6 +88,7 @@ local plugins = {
     end,
     dependencies = {
       "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
     },
   },
   {
@@ -128,15 +132,10 @@ local plugins = {
     config = function()
       require("extensions.mason")
     end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    event = { "BufNewFile", "BufReadPre" },
-    config = function()
-      require("extensions.mason-lspconfig")
-    end,
     dependencies = {
-      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "jay-babu/mason-null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       "neovim/nvim-lspconfig",
     },
   },
@@ -145,17 +144,6 @@ local plugins = {
     event = { "BufNewFile", "BufReadPre" },
     config = function()
       require("extensions.none-ls")
-    end,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
-    },
-    config = function()
-      require("extensions.mason-null-ls")
     end,
   },
   {
@@ -288,7 +276,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
