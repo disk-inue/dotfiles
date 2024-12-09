@@ -15,7 +15,7 @@ require("gitsigns").setup({
     changedelete = { text = "▎ " },
     untracked = { text = " ▎" },
   },
-  signs_staged_enable = true,
+  signs_staged_enable = false,
   signcolumn = true,
   numhl = false,
   linehl = false,
