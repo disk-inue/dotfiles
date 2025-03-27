@@ -19,3 +19,6 @@ zsh-abbr
 
 zsh/.zsh_history
 zsh/.zcompdump
+
+colima
+ghc

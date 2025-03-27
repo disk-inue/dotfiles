@@ -32,3 +32,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ async = false })
   end,
 })
+
+require("lspconfig").ltex.setup({
+  settings = {
+    ltex = {
+      language = "ja",
+      additionalRules = { enablePickyRules = true },
+    },
+  },
+})

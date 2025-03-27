@@ -13,6 +13,7 @@ bindkey -e
 
 # homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 # antigen
 source $HOME/.local/bin/antigen.zsh
@@ -97,10 +98,17 @@ export CARGO_HOME="$HOME/.config/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 source "$HOME/.config/.cargo/env"
 
+# haskell
+export PATH="/Users/disk-inue/.ghcup/bin:$PATH"
+export PATH="$HOME/.cabal/bin:$PATH"
+
 # jenv
 export JENV_ROOT="$HOME/.config/.jenv"
 export PATH="$JENV_ROOT/bin:$PATH"
 eval "$(jenv init -)"
+# java
+# export JAVA_HOME="$HOME/.jenv/versions/$(jenv version-name)"
+# export PATH="$JAVA_HOME/bin:$PATH"
 
 # fzf
 [ -f ~/.local/bin/.fzf.zsh ] && source ~/.local/bin/.fzf.zsh
