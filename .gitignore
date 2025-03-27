@@ -18,7 +18,7 @@ yarn
 zsh-abbr
 
 zsh/.zsh_history
-zsh/.zcompdump
+zsh/.zcompdump*
 
 colima
 ghc
