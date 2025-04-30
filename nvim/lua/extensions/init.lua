@@ -14,7 +14,7 @@ local plugins = {
       "nvim-tree/nvim-web-devicons",
     },
   },
-  
+
   -- コア機能
   {
     "nvim-treesitter/nvim-treesitter",
@@ -34,7 +34,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
     },
   },
-  
+
   -- UI系 (起動時に即ロード必要)
   {
     "rmehri01/onenord.nvim",
@@ -68,7 +68,11 @@ local plugins = {
       "rcarriga/nvim-notify",
     },
   },
-  
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+  },
+
   -- 検索系
   {
     "kevinhwang91/nvim-hlslens",
@@ -80,7 +84,7 @@ local plugins = {
       require("scrollbar.handlers.search").setup(require("extensions.nvim-hlslens"))
     end,
   },
-  
+
   -- Git統合
   {
     "lewis6991/gitsigns.nvim",
@@ -89,7 +93,7 @@ local plugins = {
       require("extensions.gitsigns")
     end,
   },
-  
+
   -- ナビゲーション
   {
     "SmiteshP/nvim-navic",
@@ -113,7 +117,7 @@ local plugins = {
       "lewis6991/gitsigns.nvim",
     },
   },
-  
+
   -- ファイル検索
   {
     "nvim-telescope/telescope.nvim",
@@ -133,7 +137,7 @@ local plugins = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
   },
-  
+
   -- LSP関連
   {
     "neovim/nvim-lspconfig",
@@ -163,7 +167,7 @@ local plugins = {
       require("extensions.none-ls")
     end,
   },
-  
+
   -- コード操作
   {
     "numToStr/Comment.nvim",
@@ -204,7 +208,7 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
   },
-  
+
   -- 補完系
   {
     "hrsh7th/nvim-cmp",
@@ -241,7 +245,7 @@ local plugins = {
       "zbirenbaum/copilot.lua",
     },
   },
-  
+
   -- 編集系
   {
     "kylechui/nvim-surround",
