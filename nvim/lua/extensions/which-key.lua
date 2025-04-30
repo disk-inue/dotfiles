@@ -169,9 +169,14 @@ local mappings = {
   {
     "<leader>lf",
     function()
-      vim.lsp.buf.format()
+      vim.lsp.buf.format({ async = true })
     end,
     desc = "Format",
+  },
+  {
+    "<leader>lF",
+    "<cmd>Format<cr>",
+    desc = "Format with null-ls",
   },
   {
     "<leader>ld",
@@ -195,6 +200,11 @@ local mappings = {
     desc = "References",
   },
   {
+    "<leader>lR",
+    "<cmd>Telescope lsp_references<cr>",
+    desc = "References (Telescope)",
+  },
+  {
     "<leader>li",
     function()
       vim.lsp.buf.implementation()
@@ -202,11 +212,25 @@ local mappings = {
     desc = "Implementation",
   },
   {
+    "<leader>lI",
+    "<cmd>Telescope lsp_implementations<cr>",
+    desc = "Implementations (Telescope)",
+  },
+  {
     "<leader>lt",
     function()
       vim.lsp.buf.type_definition()
     end,
     desc = "Type Definition",
+  },
+  {
+    "<leader>lT",
+    function()
+      local new_value = not vim.diagnostic.config().virtual_text
+      vim.diagnostic.config({ virtual_text = new_value })
+      print("Inline diagnostics " .. (new_value and "enabled" or "disabled"))
+    end,
+    desc = "Toggle Inline Diagnostics",
   },
   {
     "<leader>lh",
@@ -237,9 +261,14 @@ local mappings = {
     desc = "Code Action",
   },
   {
+    "<leader>lA",
+    "<cmd>Telescope lsp_code_actions<cr>",
+    desc = "Code Actions (Telescope)",
+  },
+  {
     "<leader>le",
     function()
-      vim.diagnostic.open_float()
+      vim.diagnostic.open_float({ scope = "line" })
     end,
     desc = "Line Diagnostics",
   },
@@ -251,19 +280,35 @@ local mappings = {
     desc = "Diagnostic List",
   },
   {
+    "<leader>lQ",
+    "<cmd>Telescope diagnostics bufnr=0<cr>",
+    desc = "Buffer Diagnostics (Telescope)",
+  },
+  {
     "<leader>lj",
     function()
-      vim.diagnostic.goto_next()
+      vim.diagnostic.goto_next({ float = true })
     end,
     desc = "Next Diagnostic",
   },
   {
     "<leader>lk",
     function()
-      vim.diagnostic.goto_prev()
+      vim.diagnostic.goto_prev({ float = true })
     end,
     desc = "Previous Diagnostic",
   },
+  {
+    "<leader>lo",
+    "<cmd>Telescope lsp_document_symbols<cr>",
+    desc = "Document Symbols",
+  },
+  {
+    "<leader>lO",
+    "<cmd>Telescope lsp_workspace_symbols<cr>",
+    desc = "Workspace Symbols",
+  },
+  -- ワークスペース操作
   { "<leader>lw", group = "+workspace" },
   {
     "<leader>lwa",
@@ -285,6 +330,33 @@ local mappings = {
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end,
     desc = "List Folders",
+  },
+  -- LSPサーバー管理
+  { "<leader>lm", group = "+manage" },
+  {
+    "<leader>lmi",
+    "<cmd>LspInfo<cr>",
+    desc = "LSP Info",
+  },
+  {
+    "<leader>lmr",
+    "<cmd>LspRestart<cr>",
+    desc = "Restart LSP",
+  },
+  {
+    "<leader>lms",
+    "<cmd>LspStart<cr>",
+    desc = "Start LSP",
+  },
+  {
+    "<leader>lmS",
+    "<cmd>LspStop<cr>",
+    desc = "Stop LSP",
+  },
+  {
+    "<leader>lmm",
+    "<cmd>Mason<cr>",
+    desc = "Open Mason",
   },
 
   -- コード操作
