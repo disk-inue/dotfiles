@@ -48,6 +48,21 @@ local mappings = {
     "<cmd>Oil<cr>",
     desc = "Explore Directory",
   },
+  {
+    "<leader>fB",
+    "<cmd>Telescope file_browser<cr>",
+    desc = "File Explorer",
+  },
+  {
+    "<leader>fp",
+    "<cmd>Telescope project<cr>",
+    desc = "Projects",
+  },
+  {
+    "<leader>fm",
+    "<cmd>Telescope vim_bookmarks all<cr>",
+    desc = "Bookmarks",
+  },
 
   -- ウィンドウ操作
   { "<leader>w", group = "+window" },

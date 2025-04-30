@@ -137,6 +137,10 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-telescope/telescope-project.nvim",
+      "tom-anders/telescope-vim-bookmarks.nvim",
+      "MattesGroeger/vim-bookmarks",
     },
   },
 
