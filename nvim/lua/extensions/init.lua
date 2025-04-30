@@ -1,4 +1,5 @@
 local plugins = {
+  -- ファイル管理
   {
     "stevearc/oil.nvim",
     ---@module 'oil'
@@ -13,17 +14,19 @@ local plugins = {
       "nvim-tree/nvim-web-devicons",
     },
   },
+  
+  -- コア機能
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "BufReadPost",
     config = function()
       require("extensions.nvim-treesitter")
     end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "BufReadPost",
     config = function()
       require("extensions.nvim-treesitter-context")
     end,
@@ -31,9 +34,11 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
     },
   },
+  
+  -- UI系 (起動時に即ロード必要)
   {
     "rmehri01/onenord.nvim",
-    event = { "VimEnter" },
+    lazy = false,
     priority = 1000,
     config = function()
       require("extensions.onenord")
@@ -41,7 +46,7 @@ local plugins = {
   },
   {
     "nvim-lualine/lualine.nvim",
-    event = { "VimEnter" },
+    event = "VeryLazy",
     config = function()
       require("extensions.lualine")
     end,
@@ -54,7 +59,7 @@ local plugins = {
   },
   {
     "folke/noice.nvim",
-    event = "VimEnter",
+    event = "VeryLazy",
     config = function()
       require("extensions.noice")
     end,
@@ -63,9 +68,11 @@ local plugins = {
       "rcarriga/nvim-notify",
     },
   },
+  
+  -- 検索系
   {
     "kevinhwang91/nvim-hlslens",
-    event = { "FilterWritePre" },
+    event = "BufReadPost",
     keys = {
       "<leader>L",
     },
@@ -73,16 +80,20 @@ local plugins = {
       require("scrollbar.handlers.search").setup(require("extensions.nvim-hlslens"))
     end,
   },
+  
+  -- Git統合
   {
     "lewis6991/gitsigns.nvim",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "BufReadPost",
     config = function()
       require("extensions.gitsigns")
     end,
   },
+  
+  -- ナビゲーション
   {
     "SmiteshP/nvim-navic",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "LspAttach",
     config = function()
       require("extensions.nvim-navic")
     end,
@@ -93,7 +104,7 @@ local plugins = {
   },
   {
     "petertriho/nvim-scrollbar",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "BufReadPost",
     config = function()
       require("extensions.nvim-scrollbar")
     end,
@@ -102,9 +113,12 @@ local plugins = {
       "lewis6991/gitsigns.nvim",
     },
   },
+  
+  -- ファイル検索
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
+    cmd = "Telescope",
     keys = {
       "<leader>ff",
       "<leader>fg",
@@ -119,16 +133,19 @@ local plugins = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
   },
+  
+  -- LSP関連
   {
     "neovim/nvim-lspconfig",
-    event = { "BufNewFile", "BufReadPre" },
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("extensions.nvim-lspconfig")
     end,
   },
   {
     "williamboman/mason.nvim",
-    event = { "BufNewFile", "BufReadPre" },
+    cmd = "Mason",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("extensions.mason")
     end,
@@ -141,20 +158,23 @@ local plugins = {
   },
   {
     "nvimtools/none-ls.nvim",
-    event = { "BufNewFile", "BufReadPre" },
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("extensions.none-ls")
     end,
   },
+  
+  -- コード操作
   {
     "numToStr/Comment.nvim",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "BufReadPost",
     config = function()
       require("extensions.comment")
     end,
   },
   {
     "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
     keys = {
       "<leader>xx",
       "<leader>xX",
@@ -170,6 +190,7 @@ local plugins = {
   },
   {
     "SmiteshP/nvim-navbuddy",
+    cmd = "Navbuddy",
     keys = {
       "<leader>nb",
     },
@@ -183,9 +204,11 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
   },
+  
+  -- 補完系
   {
     "hrsh7th/nvim-cmp",
-    event = { "VimEnter" },
+    event = { "InsertEnter", "CmdlineEnter" },
     config = function()
       require("extensions.nvim-cmp")
     end,
@@ -202,14 +225,14 @@ local plugins = {
   },
   {
     "zbirenbaum/copilot.lua",
-    event = "VimEnter",
+    event = "InsertEnter",
     config = function()
       require("extensions.copilot")
     end,
   },
   {
     "zbirenbaum/copilot-cmp",
-    event = { "VimEnter" },
+    event = "InsertEnter",
     config = function()
       require("copilot_cmp").setup()
     end,
@@ -218,24 +241,26 @@ local plugins = {
       "zbirenbaum/copilot.lua",
     },
   },
+  
+  -- 編集系
   {
     "kylechui/nvim-surround",
     version = "*",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "BufReadPost",
     config = function()
       require("extensions.nvim-surround")
     end,
   },
   {
     "windwp/nvim-autopairs",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "InsertEnter",
     config = function()
       require("extensions.nvim-autopairs")
     end,
   },
   {
     "windwp/nvim-ts-autotag",
-    event = { "BufNewFile", "BufReadPre" },
+    event = "InsertEnter",
     config = function()
       require("extensions.nvim-ts-autotag")
     end,
