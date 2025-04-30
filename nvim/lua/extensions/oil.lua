@@ -128,5 +128,3 @@ require("oil").setup({
     border = "rounded",
   },
 })
-
-vim.keymap.set("n", "<leader>ex", "<CMD>Oil<CR>", { desc = "Open parent directory" })

@@ -4,9 +4,7 @@ local plugins = {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
-    keys = {
-      "<leader>ex",
-    },
+    lazy = false,
     config = function()
       require("extensions.oil")
     end,
@@ -79,7 +77,8 @@ local plugins = {
   },
   {
     "folke/which-key.nvim",
-    event = "VeryLazy",
+    lazy = false, -- lazyflag=falseに変更してプラグインを常に読み込むようにする
+    priority = 2000, -- 優先度を高くして先に読み込む
     config = function()
       require("extensions.which-key")
     end,
@@ -88,10 +87,7 @@ local plugins = {
   -- 検索系
   {
     "kevinhwang91/nvim-hlslens",
-    event = "BufReadPost",
-    keys = {
-      "<leader>L",
-    },
+    lazy = false, -- 常に読み込むように変更
     config = function()
       require("scrollbar.handlers.search").setup(require("extensions.nvim-hlslens"))
     end,
@@ -100,7 +96,7 @@ local plugins = {
   -- Git統合
   {
     "lewis6991/gitsigns.nvim",
-    event = "BufReadPost",
+    lazy = false, -- 常に読み込むように変更
     config = function()
       require("extensions.gitsigns")
     end,
@@ -134,13 +130,7 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
-    cmd = "Telescope",
-    keys = {
-      "<leader>ff",
-      "<leader>fg",
-      "<leader>fb",
-      "<leader>fh",
-    },
+    lazy = false, -- lazy=falseに変更してプラグインを常に読み込むようにする
     config = function()
       require("extensions.telescope")
     end,
@@ -183,22 +173,14 @@ local plugins = {
   -- コード操作
   {
     "numToStr/Comment.nvim",
-    event = "BufReadPost",
+    lazy = false, -- 常に読み込むように変更
     config = function()
       require("extensions.comment")
     end,
   },
   {
     "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    keys = {
-      "<leader>xx",
-      "<leader>xX",
-      "<leader>cs",
-      "<leader>cl",
-      "<leader>xL",
-      "<leader>xQ",
-    },
+    lazy = false, -- 常に読み込むように変更
     config = function()
       require("extensions.trouble")
     end,
@@ -206,10 +188,7 @@ local plugins = {
   },
   {
     "SmiteshP/nvim-navbuddy",
-    cmd = "Navbuddy",
-    keys = {
-      "<leader>nb",
-    },
+    lazy = false, -- 常に読み込むように変更
     config = function()
       require("extensions.nvim-navbuddy")
     end,
