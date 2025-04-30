@@ -33,7 +33,7 @@ local plugins = {
     },
   },
 
-  -- UI系 (起動時に即ロード必要)
+  -- UI系
   {
     "rmehri01/onenord.nvim",
     lazy = false,
@@ -77,8 +77,8 @@ local plugins = {
   },
   {
     "folke/which-key.nvim",
-    lazy = false, -- lazyflag=falseに変更してプラグインを常に読み込むようにする
-    priority = 2000, -- 優先度を高くして先に読み込む
+    lazy = false,
+    priority = 2000,
     config = function()
       require("extensions.which-key")
     end,
@@ -87,7 +87,7 @@ local plugins = {
   -- 検索系
   {
     "kevinhwang91/nvim-hlslens",
-    lazy = false, -- 常に読み込むように変更
+    lazy = false,
     config = function()
       require("scrollbar.handlers.search").setup(require("extensions.nvim-hlslens"))
     end,
@@ -96,7 +96,7 @@ local plugins = {
   -- Git統合
   {
     "lewis6991/gitsigns.nvim",
-    lazy = false, -- 常に読み込むように変更
+    lazy = false,
     config = function()
       require("extensions.gitsigns")
     end,
@@ -130,7 +130,7 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
-    lazy = false, -- lazy=falseに変更してプラグインを常に読み込むようにする
+    lazy = false,
     config = function()
       require("extensions.telescope")
     end,
@@ -173,14 +173,14 @@ local plugins = {
   -- コード操作
   {
     "numToStr/Comment.nvim",
-    lazy = false, -- 常に読み込むように変更
+    lazy = false,
     config = function()
       require("extensions.comment")
     end,
   },
   {
     "folke/trouble.nvim",
-    lazy = false, -- 常に読み込むように変更
+    lazy = false,
     config = function()
       require("extensions.trouble")
     end,
@@ -188,7 +188,7 @@ local plugins = {
   },
   {
     "SmiteshP/nvim-navbuddy",
-    lazy = false, -- 常に読み込むように変更
+    lazy = false,
     config = function()
       require("extensions.nvim-navbuddy")
     end,
@@ -267,8 +267,14 @@ local opts = {
   },
   checker = {
     enabled = true,
+    notify = false,
+    frequency = 86400,
   },
-  preformance = {
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
+  performance = {
     cache = {
       enabled = true,
     },
@@ -279,13 +285,29 @@ local opts = {
       disabled_plugins = {
         "gzip",
         "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
         "zipPlugin",
       },
+    },
+  },
+  ui = {
+    border = "rounded",
+    icons = {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🔑",
+      plugin = "🔌",
+      runtime = "💻",
+      require = "🌙",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
     },
   },
 }
