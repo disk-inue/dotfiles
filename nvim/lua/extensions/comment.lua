@@ -1,43 +1,57 @@
+-- LuaJIT言語検出のためのimport
+local ft = require("Comment.ft")
+
 require("Comment").setup({
-  ---Add a space b/w comment and the line
+  -- 行の間にスペースを入れる
   padding = true,
-  ---Whether the cursor should stay at its position
+
+  -- コメント後にカーソルの位置を維持
   sticky = true,
-  ---Lines to be ignored while (un)comment
-  ignore = nil,
-  ---LHS of toggle mappings in NORMAL mode
+
+  -- コメントの際に無視する行
+  ignore = "^$", -- 空行をスキップ
+
+  -- ノーマルモードでのトグルマッピング
   toggler = {
-    ---Line-comment toggle keymap
-    line = "gcc",
-    ---Block-comment toggle keymap
-    block = "gbc",
+    line = "gcc", -- 行コメントのトグル
+    block = "gbc", -- ブロックコメントのトグル
   },
-  ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+
+  -- ノーマル・ビジュアルモードでのマッピング
   opleader = {
-    ---Line-comment keymap
-    line = "gc",
-    ---Block-comment keymap
-    block = "gb",
+    line = "gc", -- 行コメント
+    block = "gb", -- ブロックコメント
   },
-  ---LHS of extra mappings
+
+  -- 追加マッピング
   extra = {
-    ---Add comment on the line above
-    above = "gcO",
-    ---Add comment on the line below
-    below = "gco",
-    ---Add comment at the end of line
-    eol = "gcA",
+    above = "gcO", -- 上の行にコメント追加
+    below = "gco", -- 下の行にコメント追加
+    eol = "gcA", -- 行末にコメント追加
   },
-  ---Enable keybindings
-  ---NOTE: If given `false` then the plugin won't create any mappings
+
+  -- キーバインディング有効化
   mappings = {
-    ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-    basic = true,
-    ---Extra mapping; `gco`, `gcO`, `gcA`
-    extra = true,
+    basic = true, -- 基本マッピング (gcc, gc[count]{motion} など)
+    extra = true, -- 追加マッピング (gco, gcO, gcA)
+    extended = true, -- 拡張マッピング
   },
-  ---Function to call before (un)comment
-  pre_hook = nil,
-  ---Function to call after (un)comment
+
+  -- コメント前の処理（言語に応じたコメントスタイルの適用）
+  pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+
+  -- コメント後の処理
   post_hook = nil,
 })
+
+-- 言語別のコメントスタイル設定
+ft.set("lua", { "--%s", "--[[%s]]" }) -- Lua
+ft.set("javascript", { "//%s", "/*%s*/" }) -- JavaScript
+ft.set("typescript", { "//%s", "/*%s*/" }) -- TypeScript
+ft.set("typescriptreact", { "//%s", "{/*%s*/}" }) -- TSX
+ft.set("css", { "/*%s*/" }) -- CSS
+ft.set("scss", { "//%s", "/*%s*/" }) -- SCSS
+ft.set("html", { "<!--%s-->" }) -- HTML
+ft.set("svelte", { "<!--%s-->", "{/*%s*/}" }) -- Svelte
+ft.set("vue", { "<!--%s-->", "{/*%s*/}" }) -- Vue
+ft.set("json", null) -- JSONはコメントをサポートしていないので無効化

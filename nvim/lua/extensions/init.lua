@@ -181,6 +181,9 @@ local plugins = {
     config = function()
       require("extensions.comment")
     end,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring", -- コンテキストに応じたコメントスタイル
+    },
   },
   {
     "folke/trouble.nvim",
