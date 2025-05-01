@@ -34,14 +34,24 @@ vim.diagnostic.config({
 })
 
 -- hover情報の表示設定
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded", -- 角丸ボーダー
-})
+local hover_handler = function(_, result, ctx, config)
+  config = config or {}
+  config.border = "rounded" -- 角丸ボーダー
+  local handler = vim.lsp.handlers["textDocument/hover"]
+  return handler(_, result, ctx, config)
+end
+
+vim.lsp.handlers["textDocument/hover"] = hover_handler
 
 -- signatureヘルプの表示設定
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded", -- 角丸ボーダー
-})
+local signature_handler = function(_, result, ctx, config)
+  config = config or {}
+  config.border = "rounded" -- 角丸ボーダー
+  local handler = vim.lsp.handlers["textDocument/signatureHelp"]
+  return handler(_, result, ctx, config)
+end
+
+vim.lsp.handlers["textDocument/signatureHelp"] = signature_handler
 
 -- LSPが有効になったときの設定
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -54,8 +64,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- ビジュアルモード範囲選択フォーマットは便利なのでローカルに追加
     if client and client.supports_method and client.supports_method("textDocument/formatting") then
       vim.keymap.set("v", "<M-f>", function()
-        local start_row, start_col = unpack(vim.api.nvim_buf_get_mark(0, "<"))
-        local end_row, end_col = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+        local start_row, start_col = table.unpack(vim.api.nvim_buf_get_mark(0, "<"))
+        local end_row, end_col = table.unpack(vim.api.nvim_buf_get_mark(0, ">"))
         vim.lsp.buf.format({
           async = true,
           range = {
@@ -74,7 +84,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, { buffer = bufnr, desc = "Toggle Inline Diagnostics" })
 
     -- カーソル下のシンボル情報をドキュメントに表示
-    local has_document_symbol = client and client.server_capabilities and client.server_capabilities.documentSymbolProvider
+    local has_document_symbol = client
+      and client.server_capabilities
+      and client.server_capabilities.documentSymbolProvider
     if has_document_symbol then
       require("nvim-navic").attach(client, bufnr)
     end
