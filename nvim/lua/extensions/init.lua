@@ -101,6 +101,13 @@ local plugins = {
       require("extensions.gitsigns")
     end,
   },
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 
   -- ナビゲーション
   {

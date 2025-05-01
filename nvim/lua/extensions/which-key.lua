@@ -163,6 +163,13 @@ local mappings = {
     end,
     desc = "Toggle Deleted",
   },
+  {
+    "<leader>gg",
+    function()
+      require("lazygit").lazygit()
+    end,
+    desc = "LazyGit",
+  },
 
   -- LSP関連
   { "<leader>l", group = "+lsp" },
