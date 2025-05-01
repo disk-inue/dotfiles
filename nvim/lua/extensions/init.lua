@@ -182,7 +182,7 @@ local plugins = {
       require("extensions.comment")
     end,
     dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring", -- コンテキストに応じたコメントスタイル
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
   },
   {
@@ -207,6 +207,20 @@ local plugins = {
     },
   },
 
+  -- スニペット
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    event = "InsertEnter",
+    build = "make install_jsregexp",
+    config = function()
+      require("extensions.luasnip")
+    end,
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
+  },
+
   -- 補完系
   {
     "hrsh7th/nvim-cmp",
@@ -223,6 +237,8 @@ local plugins = {
       "onsails/lspkind-nvim",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
+      "L3MON4D3/LuaSnip", -- スニペットエンジン
+      "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
     },
   },
   {
