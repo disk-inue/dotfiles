@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- バッファローカルなキーマップ設定（主なものはwhich-keyで定義済み）
     -- ビジュアルモード範囲選択フォーマットは便利なのでローカルに追加
-    if client and client.supports_method and client.supports_method("textDocument/formatting") then
+    if client and type(client.supports_method) == "function" and client.supports_method("textDocument/formatting") then
       vim.keymap.set("v", "<M-f>", function()
         local start_row, start_col = table.unpack(vim.api.nvim_buf_get_mark(0, "<"))
         local end_row, end_col = table.unpack(vim.api.nvim_buf_get_mark(0, ">"))
