@@ -1,10 +1,7 @@
+-- カラースキーマからの色を取得
 local colors = require("onenord.colors").load()
 
-local switch_color = {
-  active = { fg = colors.active, bg = colors.mypink },
-  inactive = { fg = colors.active, bg = colors.light_gray },
-}
-
+-- Git差分の情報を取得する
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
   if gitsigns then
@@ -16,19 +13,24 @@ local function diff_source()
   end
 end
 
+-- バッファタブの色設定
+local switch_color = {
+  active = { fg = colors.bg, bg = colors.green },
+  inactive = { fg = colors.fg, bg = colors.light_gray },
+}
+
 require("lualine").setup({
   options = {
     icons_enabled = true,
     theme = "auto",
-    section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {
-      statusline = {},
-      winbar = {},
+      statusline = { "dashboard", "alpha" },
+      winbar = { "dashboard", "alpha" },
     },
     ignore_focus = {},
     always_divide_middle = true,
-    always_show_tabline = true,
     globalstatus = true,
     refresh = {
       statusline = 1000,
@@ -39,59 +41,70 @@ require("lualine").setup({
 
   sections = {
     lualine_a = {
-      "mode",
+      {
+        "mode",
+      },
     },
     lualine_b = {
+      {
+        "filetype",
+        colored = true,
+        icon_only = true,
+        color = { fg = colors.fg },
+        padding = { left = 1, right = 0 },
+      },
       {
         "filename",
         file_status = true,
         newfile_status = true,
-        path = 1,
+        path = 1, -- 相対パス
         shorting_target = 40,
         symbols = { modified = "_󰷥", readonly = " ", newfile = "󰄛", unnamed = "[No Name]" },
+        color = { fg = colors.fg },
       },
     },
     lualine_c = {
       {
         "diagnostics",
-        sources = {
-          "nvim_diagnostic",
-          "nvim_lsp",
-        },
-        sections = {
-          "error",
-          "warn",
-          "info",
-          "hint",
-        },
+        sources = { "nvim_diagnostic", "nvim_lsp" },
+        sections = { "error", "warn", "info", "hint" },
         symbols = {
           error = " ",
           warn = " ",
           info = " ",
           hint = " ",
         },
-        update_in_insert = false,
+        colored = true,
         always_visible = false,
+        update_in_insert = false,
+        padding = { left = 1, right = 1 },
       },
-      { "navic" },
+      {
+        function()
+          local navic = require("nvim-navic")
+          if navic.is_available() then
+            return navic.get_location()
+          else
+            return ""
+          end
+        end,
+        cond = function()
+          local navic = require("nvim-navic")
+          return navic.is_available() and navic.get_location() ~= ""
+        end,
+        color = { fg = colors.blue },
+      },
     },
     lualine_x = {
       {
-        require("lazy.status").updates,
-        cond = require("lazy.status").has_updates,
-        color = {
-          fg = "#ff9e64",
-        },
+        "location",
+        padding = { left = 1, right = 0 },
       },
     },
     lualine_y = {
       {
-        "filetype",
-        colored = true,
-        icon_only = false,
-        color = {
-          fg = colors.fg,
-        },
+        "progress",
+        padding = { left = 0, right = 1 },
       },
     },
     lualine_z = {
@@ -103,13 +116,12 @@ require("lualine").setup({
           dos = "", -- e70f
           mac = "", -- e711
         },
-        separator = {
-          left = "",
-          right = "",
-        },
+        color = { bg = colors.green, fg = colors.bg },
+        padding = { left = 1, right = 1 },
       },
     },
   },
+
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
@@ -118,6 +130,7 @@ require("lualine").setup({
     lualine_y = {},
     lualine_z = {},
   },
+
   tabline = {
     lualine_a = {
       {
@@ -130,9 +143,10 @@ require("lualine").setup({
         filetype_names = {
           TelescopePrompt = "Telescope",
           dashboard = "Dashboard",
-          packer = "Packer",
+          lazy = "Lazy",
           fzf = "FZF",
           alpha = "Alpha",
+          oil = "Oil",
         },
         use_mode_colors = false,
         buffers_color = switch_color,
@@ -159,7 +173,7 @@ require("lualine").setup({
     },
     lualine_y = {
       {
-        "b:gitsigns_head",
+        "branch",
         icon = {
           "",
           color = {
@@ -175,7 +189,8 @@ require("lualine").setup({
       { "tabs", tabs_color = switch_color },
     },
   },
+
   winbar = {},
   inactive_winbar = {},
-  extensions = {},
+  extensions = { "trouble", "lazy", "mason", "oil" },
 })
