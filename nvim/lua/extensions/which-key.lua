@@ -170,6 +170,57 @@ local mappings = {
     end,
     desc = "LazyGit",
   },
+  {
+    "<leader>gv",
+    "<cmd>DiffviewOpen origin/main...HEAD<cr>",
+    desc = "DiffView Open",
+  },
+  {
+    "<leader>gV",
+    "<cmd>DiffviewClose<cr>",
+    desc = "DiffView Close",
+  },
+  {
+    "<leader>gh",
+    "<cmd>DiffviewFileHistory %<cr>",
+    desc = "File History(Current)",
+  },
+  {
+    "<leader>gH",
+    "<cmd>DiffviewFileHistory<cr>",
+    desc = "File History(ALL)",
+  },
+  {
+    "<leader>gl",
+    "<cmd>DiffviewLog<cr>",
+    desc = "Commit Log",
+  },
+  { "<leader>gG", group = "+github" },
+  {
+    "<leader>gGo",
+    "<cmd>GHOpenPR<cr>",
+    desc = "Open PR",
+  },
+  {
+    "<leader>gGr",
+    "<cmd>GHReviewPR<cr>",
+    desc = "Review PR",
+  },
+  {
+    "<leader>gGf",
+    "<cmd>GHPRFiles<cr>",
+    desc = "PR Files",
+  },
+  {
+    "<leader>gGc",
+    "<cmd>GHPRComments<cr>",
+    desc = "PR Comments",
+  },
+  {
+    "<leader>gGi",
+    "<cmd>GHOpenIssue<cr>",
+    desc = "Open Issue",
+  },
 
   -- LSP関連
   { "<leader>l", group = "+lsp" },

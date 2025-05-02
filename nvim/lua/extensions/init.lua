@@ -108,6 +108,24 @@ local plugins = {
       "nvim-lua/plenary.nvim",
     },
   },
+  {
+    "sindrets/diffview.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    "ldelossa/gh.nvim",
+    lazy = false,
+    dependencies = {
+      "ldelossa/litee.nvim",
+    },
+    config = function()
+      require("litee.lib").setup()
+      require("litee.gh").setup()
+    end,
+  },
 
   -- ナビゲーション
   {
