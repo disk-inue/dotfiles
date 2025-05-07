@@ -176,11 +176,12 @@ local plugins = {
     config = function()
       require("extensions.nvim-lspconfig")
     end,
+    dependencies = {
+      "williamboman/mason.nvim",
+    },
   },
   {
     "williamboman/mason.nvim",
-    cmd = "Mason",
-    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("extensions.mason")
     end,
@@ -262,7 +263,7 @@ local plugins = {
       "onsails/lspkind-nvim",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "L3MON4D3/LuaSnip", -- スニペットエンジン
+      "L3MON4D3/LuaSnip",         -- スニペットエンジン
       "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
     },
   },
@@ -366,7 +367,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()

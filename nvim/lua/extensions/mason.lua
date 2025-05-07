@@ -33,21 +33,21 @@ require("mason").setup({
   },
 })
 
+-- 基本機能のみ有効化
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "ts_ls", -- TypeScript
-    "eslint", -- ESLint
-    "html", -- HTML
-    "cssls", -- CSS
-    "jsonls", -- JSON
-    "yamlls", -- YAML
+    "ts_ls",         -- TypeScript
+    "eslint",        -- ESLint
+    "html",          -- HTML
+    "cssls",         -- CSS
+    "jsonls",        -- JSON
+    "yamlls",        -- YAML
     "stylelint_lsp", -- Stylelint (CSSリンター)
-    "lua_ls", -- Lua
-    "bashls", -- Bash
-    "marksman", -- Markdown
-    "ltex", -- テキスト校正
+    "lua_ls",        -- Lua
+    "bashls",        -- Bash
+    "marksman",      -- Markdown
+    "ltex",          -- テキスト校正
   },
-  automatic_installation = true, -- 自動インストールを有効化
 })
 
 -- LSPのケーパビリティを設定
@@ -69,18 +69,6 @@ capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
 }
-
--- LSPサーバーの自動セットアップ
-require("mason-lspconfig").setup_handlers({
-  -- デフォルトハンドラ
-  function(server_name)
-    require("lspconfig")[server_name].setup({
-      capabilities = capabilities,
-    })
-  end,
-
-  ["lua_ls"] = function() end,
-})
 
 require("mason-null-ls").setup({
   ensure_installed = {
