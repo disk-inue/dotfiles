@@ -34,6 +34,16 @@ require("telescope").setup({
       height = 0.80,
       preview_cutoff = 120,
     },
+    -- 隠しファイル・フォルダを検索対象に含める
+    hidden = true,
+    -- 除外パターンを調整（必要最小限に絞る）
+    file_ignore_patterns = {
+      "%.git/",
+      "node_modules/",
+      "%.DS_Store",
+      "%.pyc",
+      "__pycache__/",
+    },
   },
   extensions = {
     fzf = {
@@ -83,6 +93,10 @@ require("telescope").setup({
     },
     live_grep = {
       theme = "dropdown",
+      -- grepでも隠しファイルを対象にする
+      additional_args = function()
+        return { "--hidden" }
+      end,
     },
     buffers = {
       theme = "dropdown",
