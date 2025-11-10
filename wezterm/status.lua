@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm';
+local wezterm = require('wezterm')
 
 -- left status
 local DEFAULT_FG = { Color = '#9a9eab' }
@@ -60,25 +60,25 @@ local function GetHostAndCwd(elems, pane)
   end
 
   local cwd_uri = uri:sub(8)
-  local slash = cwd_uri:find '/'
+  local slash = cwd_uri:find('/')
 
   if not slash then
     return
   end
 
   local host = cwd_uri:sub(1, slash - 1)
-  local dot = host:find '[.]'
+  local dot = host:find('[.]')
 
   AddElement(elems, HEADER_HOST, dot and host:sub(1, dot - 1) or host)
   AddElement(elems, HEADER_CWD, cwd_uri:sub(slash))
 end
 
 local function GetDate(elems)
-  AddElement(elems, HEADER_DATE, wezterm.strftime '%a %b %-d')
+  AddElement(elems, HEADER_DATE, wezterm.strftime('%a %b %-d'))
 end
 
 local function GetTime(elems)
-  AddElement(elems, HEADER_TIME, wezterm.strftime '%H:%M')
+  AddElement(elems, HEADER_TIME, wezterm.strftime('%H:%M'))
 end
 
 local function GetBattery(elems, window)
@@ -103,7 +103,7 @@ local function RightUpdate(window, pane)
 end
 
 -- update-status
-wezterm.on("update-status", function(window, pane)
+wezterm.on('update-status', function(window, pane)
   LeftUpdate(window, pane)
   RightUpdate(window, pane)
 end)
