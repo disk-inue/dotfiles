@@ -1,0 +1,6 @@
+[tools]
+node = { version = "22.19.0", postinstall = "corepack enable" }
+terraform = "1.13.1"
+terraform-docs = "0.20.0"
+python = "3.13.5"
+ruby = "3.2.2"

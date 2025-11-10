@@ -22,3 +22,9 @@ zsh/.zcompdump*
 
 colima
 ghc
+
+.jira
+claude
+tfenv
+glow
+git

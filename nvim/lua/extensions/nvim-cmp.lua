@@ -66,13 +66,13 @@ cmp.setup({
     end, { "i", "s" }),
   }),
   sources = {
-    { name = "nvim_lsp", priority = 1000 },
+    { name = "nvim_lsp",                priority = 1000 },
     { name = "nvim_lsp_signature_help", priority = 900 },
-    { name = "luasnip", priority = 800 },
-    { name = "copilot", priority = 700 },
-    { name = "buffer", priority = 500 },
-    { name = "path", priority = 300 },
-    { name = "latex_symbols", priority = 200 },
+    { name = "luasnip",                 priority = 800 },
+    { name = "copilot",                 priority = 700 },
+    { name = "buffer",                  priority = 500 },
+    { name = "path",                    priority = 300 },
+    { name = "latex_symbols",           priority = 200 },
   },
   sorting = {
     priority_weight = 2,
@@ -116,7 +116,7 @@ cmp.setup.cmdline({ "/", "?" }, {
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = "path", priority = 500 },
+    { name = "path",    priority = 500 },
     { name = "cmdline", priority = 300 },
   },
   matching = { disallow_symbol_nonprefix_matching = false },
