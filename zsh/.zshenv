@@ -22,7 +22,7 @@ export GIT_EDITOR="${EDITOR}"
 
 # history
 export HISTFILE=${HOME}/.config/zsh/.zsh_history
-export HISTSIZE=1000
+export HISTSIZE=10000
 export SAVEHIST=100000
 export HISTFILESIZE=100000
 setopt hist_ignore_dups
@@ -46,9 +46,6 @@ unsetopt list_types
 # antigen
 export _ANTIGEN_INSTALL_DIR=${HOME}/.local/bin
 
-# postgresql
-export PGPASSWORD=postgres
-
 # libpq
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
@@ -62,3 +59,7 @@ if [ -f "${HOME}/.local/bin/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/.l
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/.local/bin/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/.local/bin/google-cloud-sdk/completion.zsh.inc"; fi
 
+# 環境固有の機密情報を読み込み
+if [[ -f "${XDG_CONFIG_HOME}/zsh/.env.local" ]]; then
+  source "${XDG_CONFIG_HOME}/zsh/.env.local"
+fi

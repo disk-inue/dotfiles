@@ -1,0 +1,8 @@
+# 環境固有の機密情報
+.env.local
+
+# zsh履歴ファイル
+.zsh_history
+
+# zsh補完キャッシュ
+.zcompdump*

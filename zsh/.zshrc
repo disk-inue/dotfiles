@@ -44,8 +44,8 @@ antigen bundles <<EOBUNDLES
     olets/zsh-abbr@main
 EOBUNDLES
 
-# Load the theme
-antigen theme robbyrussell
+# Load the theme (starshipを使うのでantigenのテーマは無効化)
+# antigen theme robbyrussell
 # antigen theme romkatv/powerlevel10k
 
 # Tell antigen that you're done
@@ -60,7 +60,7 @@ export PYENV_ROOT="$HOME/.config/.pyenv"
 eval "$(pyenv init -)"
 
 # alias
-alias ls='ls -F --color=auto'
+alias ls='ls -FG'
 alias vim='nvim'
 
 abbr -S ll='ls -l' >>/dev/null
@@ -79,38 +79,7 @@ abbr -S gmg='git merge' >>/dev/null
 abbr -S gpsh='git push' >>/dev/null
 abbr -S lg='lazygit' >>/dev/null
 
-# nodenv
-# export NODENV_ROOT="$HOME/.config/.nodenv"
-# eval "$(nodenv init -)"
-
-# rbenv
-# export RBENV_ROOT="$HOME/.config/.rbenv"
-# eval "$(rbenv init - zsh)"
-
-# goenv
-# export GOENV_ROOT="$HOME/.config/.goenv"
-# export PATH="$GOENV_ROOT/bin:$PATH"
-# eval "$(goenv init -)"
-
-# rust
-# export RUSTUP_HOME="$HOME/.config/.cargo"
-# export CARGO_HOME="$HOME/.config/.cargo"
-# export PATH="$CARGO_HOME/bin:$PATH"
-# source "$HOME/.config/.cargo/env"
-
-# haskell
-# export PATH="/Users/disk-inue/.ghcup/bin:$PATH"
-# export PATH="$HOME/.cabal/bin:$PATH"
-
-# jenv
-# export JENV_ROOT="$HOME/.config/.jenv"
-# export PATH="$JENV_ROOT/bin:$PATH"
-# eval "$(jenv init -)"
-# java
-# export JAVA_HOME="$HOME/.jenv/versions/$(jenv version-name)"
-# export PATH="$JAVA_HOME/bin:$PATH"
-
-# mize
+# mise
 eval "$(mise activate zsh)"
 
 # fzf
