@@ -8,7 +8,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
       -- LSPベースのフォーマットを優先
-      return client.name ~= "tsserver" -- tsserverは除外（他のフォーマッターを優先）
+      return client.name ~= "ts_ls" -- ts_lsは除外（prettierなど他のフォーマッターを優先）
     end,
     bufnr = bufnr,
     timeout_ms = 5000, -- タイムアウトを5秒に設定

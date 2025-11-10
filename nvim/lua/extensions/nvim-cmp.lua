@@ -8,6 +8,14 @@ cmp.setup({
       require("luasnip").lsp_expand(args.body)
     end,
   },
+  -- Neovim 0.11以降のfuzzy matchingを有効化
+  matching = {
+    disallow_fuzzy_matching = false,
+    disallow_fullfuzzy_matching = false,
+    disallow_partial_fuzzy_matching = false,
+    disallow_partial_matching = false,
+    disallow_prefix_unmatching = false,
+  },
   window = {
     completion = {
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",

@@ -48,9 +48,9 @@ require("nvim-treesitter.configs").setup({
     enable = true,
     keymaps = {
       init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
+      node_incremental = "gni", -- 0.11デフォルトのgrnと被らないように変更
+      scope_incremental = "gns",
+      node_decremental = "gnm",
     },
   },
   indent = {

@@ -33,25 +33,9 @@ vim.diagnostic.config({
   severity_sort = true, -- 重要度でソート
 })
 
--- hover情報の表示設定
-local hover_handler = function(_, result, ctx, config)
-  config = config or {}
-  config.border = "rounded" -- 角丸ボーダー
-  local handler = vim.lsp.handlers["textDocument/hover"]
-  return handler(_, result, ctx, config)
-end
-
-vim.lsp.handlers["textDocument/hover"] = hover_handler
-
--- signatureヘルプの表示設定
-local signature_handler = function(_, result, ctx, config)
-  config = config or {}
-  config.border = "rounded" -- 角丸ボーダー
-  local handler = vim.lsp.handlers["textDocument/signatureHelp"]
-  return handler(_, result, ctx, config)
-end
-
-vim.lsp.handlers["textDocument/signatureHelp"] = signature_handler
+-- Neovim 0.11以降では、フローティングウィンドウのボーダーはwinborderオプションで設定
+-- グローバルハンドラーのオーバーライドは動作しなくなったため、winborderで統一的に設定
+vim.o.winborder = "rounded"
 
 -- LSPが有効になったときの設定
 vim.api.nvim_create_autocmd("LspAttach", {

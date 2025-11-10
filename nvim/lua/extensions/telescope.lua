@@ -18,6 +18,18 @@ require("telescope").setup({
         ["q"] = require("telescope.actions").close,
       },
     },
+    -- 隠しファイルを検索対象に含めるための設定
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden", -- 隠しファイルも検索対象に
+      "--glob=!.git/", -- .gitディレクトリは除外
+    },
     winblend = 20,
     path_display = { "truncate" },
     sorting_strategy = "ascending",
@@ -34,11 +46,9 @@ require("telescope").setup({
       height = 0.80,
       preview_cutoff = 120,
     },
-    -- 隠しファイル・フォルダを検索対象に含める
-    hidden = true,
     -- 除外パターンを調整（必要最小限に絞る）
     file_ignore_patterns = {
-      "%.git/",
+      "^%.git/",
       "node_modules/",
       "%.DS_Store",
       "%.pyc",

@@ -165,7 +165,7 @@ require("lualine").setup({
         colored = true,
         symbols = {
           added = " ",
-          modeiffied = " ",
+          modified = " ",
           removed = " ",
         },
         source = diff_source,

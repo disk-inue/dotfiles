@@ -1,33 +1,33 @@
--- global
-vim.api.nvim_set_option("termguicolors", true)
-vim.api.nvim_set_option("scrolloff", 4)
-vim.api.nvim_set_option("ignorecase", true)
-vim.api.nvim_set_option("smartcase", true)
-vim.api.nvim_set_option("inccommand", "split")
-vim.api.nvim_set_option("clipboard", "unnamedplus")
-vim.api.nvim_set_option("spell", true)
-vim.api.nvim_set_option("showmode", false)
---[[ vim.api.nvim_set_option("shortmess", "S") ]]
+-- global - vim.optを使用(nvim_set_optionは非推奨)
+vim.opt.termguicolors = true
+vim.opt.scrolloff = 4
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "split"
+vim.opt.clipboard = "unnamedplus"
+vim.opt.spell = true
+vim.opt.showmode = false
+--[[ vim.opt.shortmess = "S" ]]
 vim.g.loaded_perl_provider = 0
 
--- window
-vim.api.nvim_win_set_option(0, "number", true)
--- vim.api.nvim_win_set_option(0, 'relativenumber', true)
-vim.api.nvim_win_set_option(0, "cursorline", true)
-vim.api.nvim_win_set_option(0, "signcolumn", "yes:1")
-vim.api.nvim_win_set_option(0, "wrap", false)
-vim.api.nvim_win_set_option(0, "list", true)
--- vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
+-- window - vim.wo.を使用(nvim_win_set_optionは非推奨)
+vim.wo.number = true
+-- vim.wo.relativenumber = true
+vim.wo.cursorline = true
+vim.wo.signcolumn = "yes:1"
+vim.wo.wrap = false
+vim.wo.list = true
+-- vim.wo.colorcolumn = '100'
 
--- buffer
+-- buffer - vim.boを使用(nvim_buf_set_optionは非推奨)
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = "*",
   group = vim.api.nvim_create_augroup("buffer_set_options", {}),
   callback = function()
-    vim.api.nvim_buf_set_option(0, "swapfile", false)
-    vim.api.nvim_buf_set_option(0, "tabstop", 2)
-    vim.api.nvim_buf_set_option(0, "shiftwidth", 0)
-    vim.api.nvim_buf_set_option(0, "expandtab", true)
-    vim.api.nvim_buf_set_option(0, "spelllang", "en_us")
+    vim.bo.swapfile = false
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 0
+    vim.bo.expandtab = true
+    vim.bo.spelllang = "en_us"
   end,
 })
