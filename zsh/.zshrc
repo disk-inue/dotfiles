@@ -59,6 +59,9 @@ export PYENV_ROOT="$HOME/.config/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# haskell (ghcup)
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+
 # alias
 alias ls='ls -FG'
 alias vim='nvim'

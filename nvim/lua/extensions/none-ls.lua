@@ -18,6 +18,17 @@ end
 -- 設定グループの作成
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+  local ormolu = {
+    name = "ormolu",
+    method = null_ls.methods.FORMATTING,
+    filetypes = { "haskell" },
+    generator = null_ls.formatter({
+      command = "stack",
+      args = { "exec", "--", "ormolu", "--stdin-input-file", "$FILENAME", "-" },
+      to_stdin = true,
+    }),
+  }
+
 -- フォーマッターとリンター
 local sources = {
   -- フォーマッター
@@ -25,6 +36,8 @@ local sources = {
 
   -- Git統合
   null_ls.builtins.code_actions.gitsigns, -- Gitの変更に対するアクション
+
+  ormolu,
 }
 
 null_ls.setup({
