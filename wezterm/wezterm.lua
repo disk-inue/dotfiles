@@ -52,8 +52,8 @@ config.cursor_blink_ease_out = "Constant"
 -- スクロールバック
 config.scrollback_lines = 10000
 
--- tmux自動起動（既存セッションがあればアタッチ、なければ新規作成）
-config.default_prog = { "/opt/homebrew/bin/tmux", "new-session", "-A", "-s", "main" }
+-- tmux自動起動（新規ウィンドウごとに新しいセッションを作成）
+config.default_prog = { "/opt/homebrew/bin/tmux", "new-session" }
 
 -- status
 config.status_update_interval = 1000
