@@ -1,6 +1,4 @@
 local cmp = require("cmp")
-local types = require("cmp.types")
-local str = require("cmp.utils.str")
 
 cmp.setup({
   snippet = {
@@ -80,7 +78,6 @@ cmp.setup({
     { name = "copilot",                 priority = 700 },
     { name = "buffer",                  priority = 500 },
     { name = "path",                    priority = 300 },
-    { name = "latex_symbols",           priority = 200 },
   },
   sorting = {
     priority_weight = 2,

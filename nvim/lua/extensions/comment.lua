@@ -54,4 +54,4 @@ ft.set("scss", { "//%s", "/*%s*/" }) -- SCSS
 ft.set("html", { "<!--%s-->" }) -- HTML
 ft.set("svelte", { "<!--%s-->", "{/*%s*/}" }) -- Svelte
 ft.set("vue", { "<!--%s-->", "{/*%s*/}" }) -- Vue
-ft.set("json", null) -- JSONはコメントをサポートしていないので無効化
+ft.set("json", nil) -- JSONはコメントをサポートしていないので無効化

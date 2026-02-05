@@ -1,3 +1,8 @@
+[settings]
+trusted_config_paths = [
+  "/Users/disk-inue/work/workspace/cospa/**"
+]
+
 [tools]
 node = { version = "22.19.0", postinstall = "corepack enable" }
 terraform = "1.13.1"

@@ -33,6 +33,7 @@ vim.keymap.set("n", "<Tab>", ":bnext<CR>")
 vim.keymap.set("n", "<S-Tab>", ":bprev<CR>")
 
 -- スプリット (非leader系)
+-- NOTE: 標準のJ(行結合)とL(画面下方移動)を上書きしている
 vim.keymap.set("n", "<S-j>", ":split<CR>")
 vim.keymap.set("n", "<S-l>", ":vsplit<CR>")
 

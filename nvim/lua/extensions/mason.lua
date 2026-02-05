@@ -26,11 +26,6 @@ require("mason").setup({
     download_url_template = "https://github.com/%s/releases/download/%s/%s",
   },
   log_level = vim.log.levels.INFO,
-  pip = {
-    install_args = {
-      "--proxy", -- プロキシがある場合は設定
-    },
-  },
 })
 
 -- 基本機能のみ有効化
@@ -149,25 +144,6 @@ require("mason-lspconfig").setup({
   },
 })
 
--- LSPのケーパビリティを設定
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    "documentation",
-    "detail",
-    "additionalTextEdits",
-  },
-}
-capabilities.textDocument.colorProvider = { dynamicRegistration = false }
-capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
-}
 
 require("mason-null-ls").setup({
   ensure_installed = {

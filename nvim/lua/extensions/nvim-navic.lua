@@ -1,5 +1,3 @@
-local colors = require("onenord.colors").load()
-
 require("nvim-navic").setup({
   lsp = {
     auto_attach = true, -- LSPがアタッチされたときに自動的にアタッチする
