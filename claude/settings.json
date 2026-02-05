@@ -11,7 +11,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+            "command": "$HOME/.config/claude/hooks/log-claude.sh"
           }
         ]
       }
@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+            "command": "$HOME/.config/claude/hooks/log-claude.sh"
           }
         ]
       }
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+            "command": "$HOME/.config/claude/hooks/log-claude.sh"
           }
         ]
       }
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+            "command": "$HOME/.config/claude/hooks/log-claude.sh"
           }
         ]
       }
@@ -55,7 +55,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+            "command": "$HOME/.config/claude/hooks/log-claude.sh"
           }
         ]
       }
