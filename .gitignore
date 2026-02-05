@@ -24,7 +24,32 @@ colima
 ghc
 
 .jira
-claude
 tfenv
 glow
 git
+
+# Claude Code
+claude/cache/
+claude/debug/
+claude/downloads/
+claude/file-history/
+claude/history.jsonl
+claude/paste-cache/
+claude/plans/
+claude/projects/
+claude/session-env/
+claude/shell-snapshots/
+claude/stats-cache.json
+claude/statsig/
+claude/tasks/
+claude/telemetry/
+claude/todos/
+claude/settings.local.json
+claude/local/node_modules/
+claude/plugins/marketplaces/
+claude/plugins/repos/
+claude/plugins/known_marketplaces.json
+claude/local/claude
+claude/CLAUDE_JP.md
+claude/CLAUDE_EN.md
+claude/CLAUDE.md
