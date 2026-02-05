@@ -124,7 +124,7 @@ require("oil").setup({
   ssh = {
     border = "rounded",
   },
-  kyemaps_help = {
+  keymaps_help = {
     border = "rounded",
   },
 })

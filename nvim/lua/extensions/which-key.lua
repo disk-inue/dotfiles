@@ -436,28 +436,28 @@ local mappings = {
   {
     "<leader>cs",
     function()
-      require("trouble").toggle("document_diagnostics")
+      require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } })
     end,
     desc = "Document Diagnostics",
   },
   {
     "<leader>cw",
     function()
-      require("trouble").toggle("workspace_diagnostics")
+      require("trouble").toggle({ mode = "diagnostics" })
     end,
     desc = "Workspace Diagnostics",
   },
   {
     "<leader>cl",
     function()
-      require("trouble").toggle("loclist")
+      require("trouble").toggle({ mode = "loclist" })
     end,
     desc = "Location List",
   },
   {
     "<leader>cq",
     function()
-      require("trouble").toggle("quickfix")
+      require("trouble").toggle({ mode = "qflist" })
     end,
     desc = "Quickfix List",
   },
@@ -569,28 +569,28 @@ local mappings = {
   {
     "<leader>xw",
     function()
-      require("trouble").toggle("workspace_diagnostics")
+      require("trouble").toggle({ mode = "diagnostics" })
     end,
     desc = "Workspace Diagnostics",
   },
   {
     "<leader>xd",
     function()
-      require("trouble").toggle("document_diagnostics")
+      require("trouble").toggle({ mode = "diagnostics", filter = { buf = 0 } })
     end,
     desc = "Document Diagnostics",
   },
   {
     "<leader>xl",
     function()
-      require("trouble").toggle("loclist")
+      require("trouble").toggle({ mode = "loclist" })
     end,
     desc = "Location List",
   },
   {
     "<leader>xq",
     function()
-      require("trouble").toggle("quickfix")
+      require("trouble").toggle({ mode = "qflist" })
     end,
     desc = "Quickfix List",
   },
@@ -612,10 +612,6 @@ local mappings = {
   },
   { "<leader>n", "<cmd>Navbuddy<cr>", desc = "Navigation" },
 
-  -- 既存のテストマッピング (コメントアウトした部分)
-  { "<leader>t", group = "+test" },
-  { "<leader>tn", "<cmd>Neotest run<cr>", desc = "Run Nearest Test" },
-  { "<leader>tf", "<cmd>Neotest run file<cr>", desc = "Run File Test" },
 }
 
 -- ビジュアルモード用のマッピング

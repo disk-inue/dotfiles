@@ -96,3 +96,12 @@ eval "$(starship init zsh)"
     # tmux
 # fi
 
+# work-logs: terminal command logging
+work_logs_preexec() {
+  local LOG_DIR="$HOME/.work-logs"
+  local LOG_FILE="$LOG_DIR/$(date +'%Y-%m-%d').log"
+  local TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
+  echo "$TIMESTAMP [TERM] [$PWD] $1" >> "$LOG_FILE"
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec work_logs_preexec
