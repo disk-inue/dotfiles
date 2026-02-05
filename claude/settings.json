@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "alwaysThinkingEnabled": true,
+  "feedbackSurveyState": {
+    "lastShownTime": 1754031665301
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.work-logs/hooks/log-claude.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
