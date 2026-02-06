@@ -1,6 +1,53 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "alwaysThinkingEnabled": true,
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(git branch:*)",
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(cat:*)",
+      "Bash(claude code:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh api:*)",
+      "Bash(gh run:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh repo clone:*)",
+      "Bash(gh search:*)",
+      "Bash(echo:*)",
+      "Bash(touch:*)",
+      "Bash(pnpm:*)",
+      "Bash(pnpm dev)",
+      "Bash(pnpm build)",
+      "Bash(pnpm test)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm format)",
+      "Bash(pnpm codegen)",
+      "Bash(cd:*)",
+      "Bash(rg:*)",
+      "Bash(npm run:*)",
+      "Bash(find:*)",
+      "Bash(ls -la:*)",
+      "mcp__playwright__*",
+      "mcp__figma-dev-mode-mcp-server__*",
+      "mcp__context7__*",
+      "mcp__serena__*",
+      "mcp__next-devtools__*"
+    ],
+    "deny": [
+      "Bash(gh repo delete:*)",
+      "Bash(gh repo edit:*)",
+      "Bash(gh secret:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(rm -rf:*)"
+    ]
+  },
   "feedbackSurveyState": {
     "lastShownTime": 1754031665301
   },

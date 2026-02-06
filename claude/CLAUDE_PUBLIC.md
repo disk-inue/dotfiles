@@ -67,7 +67,7 @@
 # 開発ワークフロー
 
 - **重要**: 開発タスクを開始する際は、必ず新しいブランチを作成してから作業を開始してください。
-  - JIRAチケットの場合: チケット番号をブランチ名にする（例: `git checkout -b COSPA-123`）
+  - JIRAチケットの場合: チケット番号をブランチ名にする（例: `git checkout -b hoge-123`）
   - 通常のタスクの場合: わかりやすい名前でブランチを作成する（例: `git checkout -b fix-header-style`, `git checkout -b add-user-profile`）
   - mainブランチで直接作業しない
 
