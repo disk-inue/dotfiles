@@ -26,8 +26,6 @@ ghc
 .jira
 tfenv
 glow
-git
-
 # Claude Code
 claude/cache/
 claude/debug/

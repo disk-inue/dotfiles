@@ -80,7 +80,15 @@ abbr -S gad='git add' >>/dev/null
 abbr -S gcm='git commit' >>/dev/null
 abbr -S gmg='git merge' >>/dev/null
 abbr -S gpsh='git push' >>/dev/null
-abbr -S lg='lazygit' >>/dev/null
+# lazygit: worktree切り替え後にシェルのカレントディレクトリも追従させる
+lg() {
+  export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+  lazygit "$@"
+  if [ -f "$LAZYGIT_NEW_DIR_FILE" ]; then
+    cd "$(cat "$LAZYGIT_NEW_DIR_FILE")"
+    rm -f "$LAZYGIT_NEW_DIR_FILE"
+  fi
+}
 
 # mise
 eval "$(mise activate zsh)"
