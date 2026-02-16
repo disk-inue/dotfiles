@@ -92,6 +92,17 @@
         ]
       }
     ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/notify-sound.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
