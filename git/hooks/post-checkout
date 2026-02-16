@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# Global post-checkout hook for worktree setup
+#
+# When core.hooksPath is set globally, repo-local hooks (.git/hooks/) are
+# ignored. This script delegates to local hooks first, then performs
+# worktree initialization (copy .env + pnpm install).
+#
+
+# --- Delegate to repo-local hooks ---
+GIT_COMMON_DIR="$(git rev-parse --git-common-dir 2>/dev/null)"
+LOCAL_HOOK="${GIT_COMMON_DIR}/hooks/post-checkout"
+if [ -f "$LOCAL_HOOK" ] && [ -x "$LOCAL_HOOK" ]; then
+  "$LOCAL_HOOK" "$@"
+fi
+
+# --- Worktree initialization ---
+
+# Only run for branch checkouts (not file checkouts)
+[ "${3:-0}" = "0" ] && exit 0
+
+# Only run for new worktree creation (previous HEAD is null ref)
+PREV_HEAD="${1:-}"
+NULL_REF="0000000000000000000000000000000000000000"
+[ "$PREV_HEAD" != "$NULL_REF" ] && exit 0
+
+# Skip if this is the main worktree (e.g., after git clone)
+GIT_DIR_RESOLVED="$(cd "$(git rev-parse --git-dir 2>/dev/null)" && pwd)"
+GIT_COMMON_DIR_RESOLVED="$(cd "$GIT_COMMON_DIR" && pwd)"
+[ "$GIT_DIR_RESOLVED" = "$GIT_COMMON_DIR_RESOLVED" ] && exit 0
+
+# Get paths
+MAIN_WORKTREE="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
+CURRENT_WORKTREE="$(git rev-parse --show-toplevel 2>/dev/null)"
+
+# Copy .env and .env.local from main worktree (supports monorepo)
+find "$MAIN_WORKTREE" \( -name ".env" -o -name ".env.local" \) \
+  -not -path "*/node_modules/*" \
+  -not -path "*/.next/*" \
+  -not -path "*/dist/*" | while read -r src; do
+  rel="${src#"$MAIN_WORKTREE"/}"
+  dest="${CURRENT_WORKTREE}/${rel}"
+  mkdir -p "$(dirname "$dest")"
+  cp "$src" "$dest"
+  echo "[worktree-setup] Copied ${rel}"
+done
+
+# Run pnpm install if package.json exists
+if [ -f "${CURRENT_WORKTREE}/package.json" ]; then
+  echo "[worktree-setup] Running pnpm install..."
+  (cd "${CURRENT_WORKTREE}" && pnpm install)
+fi
