@@ -4,7 +4,7 @@
 #
 # When core.hooksPath is set globally, repo-local hooks (.git/hooks/) are
 # ignored. This script delegates to local hooks first, then performs
-# worktree initialization (copy .env + pnpm install).
+# worktree initialization (copy .env).
 #
 
 # --- Delegate to repo-local hooks ---
@@ -44,9 +44,3 @@ find "$MAIN_WORKTREE" \( -name ".env" -o -name ".env.local" \) \
   cp "$src" "$dest"
   echo "[worktree-setup] Copied ${rel}"
 done
-
-# Run pnpm install if package.json exists
-if [ -f "${CURRENT_WORKTREE}/package.json" ]; then
-  echo "[worktree-setup] Running pnpm install..."
-  (cd "${CURRENT_WORKTREE}" && pnpm install)
-fi
