@@ -2,23 +2,33 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(git checkout:*)",
-      "Bash(git pull:*)",
-      "Bash(git branch:*)",
+      "Bash(git checkout *)",
+      "Bash(git pull *)",
+      "Bash(git branch *)",
       "Bash(git status)",
+      "Bash(git status *)",
       "Bash(git diff)",
-      "Bash(cat:*)",
-      "Bash(claude code:*)",
-      "Bash(gh pr:*)",
-      "Bash(gh issue:*)",
-      "Bash(gh api:*)",
-      "Bash(gh run:*)",
-      "Bash(gh repo view:*)",
-      "Bash(gh repo clone:*)",
-      "Bash(gh search:*)",
-      "Bash(echo:*)",
-      "Bash(touch:*)",
-      "Bash(pnpm:*)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git stash)",
+      "Bash(git stash *)",
+      "Bash(cat *)",
+      "Bash(claude code *)",
+      "Bash(gh pr *)",
+      "Bash(gh issue *)",
+      "Bash(gh api *)",
+      "Bash(gh run *)",
+      "Bash(gh repo view *)",
+      "Bash(gh repo clone *)",
+      "Bash(gh search *)",
+      "Bash(gh label *)",
+      "Bash(gh workflow *)",
+      "Bash(echo *)",
+      "Bash(touch *)",
+      "Bash(pnpm *)",
       "Bash(pnpm dev)",
       "Bash(pnpm build)",
       "Bash(pnpm test)",
@@ -26,11 +36,14 @@
       "Bash(pnpm typecheck)",
       "Bash(pnpm format)",
       "Bash(pnpm codegen)",
-      "Bash(cd:*)",
-      "Bash(rg:*)",
-      "Bash(npm run:*)",
-      "Bash(find:*)",
-      "Bash(ls -la:*)",
+      "Bash(cd *)",
+      "Bash(rg *)",
+      "Bash(npm run *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(ls -la *)",
+      "Bash(node *)",
+      "Bash(python3 *)",
       "mcp__playwright__*",
       "mcp__figma-dev-mode-mcp-server__*",
       "mcp__context7__*",
@@ -38,14 +51,27 @@
       "mcp__next-devtools__*"
     ],
     "deny": [
-      "Bash(gh repo delete:*)",
-      "Bash(gh repo edit:*)",
-      "Bash(gh secret:*)",
-      "Bash(git push --force:*)",
-      "Bash(git push -f:*)",
-      "Bash(git reset --hard:*)",
-      "Bash(rm -rf:*)"
-    ]
+      "Bash(gh repo delete *)",
+      "Bash(gh repo edit *)",
+      "Bash(gh secret *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(rm -rf *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(chmod 777 *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./config/credentials.json)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
+  "sandbox": {
+    "enabled": false
   },
   "hooks": {
     "PreToolUse": [
@@ -55,6 +81,35 @@
           {
             "type": "command",
             "command": "$HOME/.config/claude/hooks/log-claude.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/validate-command.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/secret-check.sh",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/protect-branch.sh",
+            "timeout": 5000
           }
         ]
       }
@@ -79,6 +134,15 @@
             "command": "$HOME/.config/claude/hooks/log-claude.sh"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/session-start.sh",
+            "timeout": 10000
+          }
+        ]
       }
     ],
     "SessionEnd": [
@@ -99,6 +163,78 @@
           {
             "type": "command",
             "command": "$HOME/.config/claude/hooks/notify-sound.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/format.sh",
+            "timeout": 30000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/lint.sh",
+            "timeout": 30000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/typecheck.sh",
+            "timeout": 60000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/test-on-edit.sh",
+            "timeout": 120000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/codegen-graphql.sh",
+            "timeout": 60000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/codegen-prisma.sh",
+            "timeout": 60000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/pnpm-install.sh",
+            "timeout": 120000
           }
         ]
       }
