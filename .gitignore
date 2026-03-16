@@ -39,6 +39,7 @@ claude/session-env/
 claude/shell-snapshots/
 claude/stats-cache.json
 claude/statsig/
+claude/sessions/
 claude/tasks/
 claude/telemetry/
 claude/todos/
@@ -53,4 +54,3 @@ claude/mcp-needs-auth-cache.json
 claude/local/claude
 claude/CLAUDE_JP.md
 claude/CLAUDE_EN.md
-claude/CLAUDE.md
