@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
   ensure_installed = {
     "bash",
     "comment",
@@ -31,31 +31,21 @@ require("nvim-treesitter.configs").setup({
     "xml",
     "yaml",
   },
-  sync_install = false,
   auto_install = true,
-  highlight = {
-    enable = true,
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-    additional_vim_regex_highlighting = false,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "gni", -- 0.11デフォルトのgrnと被らないように変更
-      scope_incremental = "gns",
-      node_decremental = "gnm",
-    },
-  },
-  indent = {
-    enable = true,
-  },
+})
+
+-- highlight, indent はNeovim 0.12でコア機能として有効化
+-- バッファ読み込み時にtreesitterを開始（大きいファイルは除外）
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("treesitter_start", {}),
+  callback = function(ev)
+    local max_filesize = 100 * 1024 -- 100 KB
+    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(ev.buf))
+    if ok and stats and stats.size > max_filesize then
+      return
+    end
+    pcall(vim.treesitter.start, ev.buf)
+  end,
 })
 
 -- ts_context_commentstringの設定

@@ -1,36 +1,35 @@
--- LSP関連のUIをカスタマイズ
-local signs = {
-  Error = " ", -- エラー: 赤い❌
-  Warn = " ", -- 警告: オレンジの⚠️
-  Hint = "󰌶 ", -- ヒント: 青い電球
-  Info = " ", -- 情報: 青いℹ️
-}
-
--- 診断マークの設定
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
--- 診断の表示オプション
+-- 診断の表示オプション（v0.12: sign_define廃止 → signs.textで設定）
 vim.diagnostic.config({
   virtual_text = {
-    prefix = "●", -- 仮想テキストの前に表示するアイコン
-    source = "if_many", -- 複数の診断元がある場合のみソースを表示
+    prefix = "●",
+    source = "if_many",
     severity = {
-      min = vim.diagnostic.severity.HINT, -- すべての重要度を表示
+      min = vim.diagnostic.severity.HINT,
     },
   },
   float = {
-    source = true, -- フロートウィンドウにはソースを表示
-    border = "rounded", -- 角丸ボーダー
-    header = "", -- ヘッダーを表示しない
-    prefix = "", -- プレフィックスは不要
+    source = true,
+    border = "rounded",
+    header = "",
+    prefix = "",
   },
-  signs = true, -- サイン列に診断マークを表示
-  underline = true, -- 問題のある部分に下線を引く
-  update_in_insert = false, -- インサート中は更新しない
-  severity_sort = true, -- 重要度でソート
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+      [vim.diagnostic.severity.INFO] = " ",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+    },
+  },
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
 })
 
 -- Neovim 0.11以降では、フローティングウィンドウのボーダーはwinborderオプションで設定
