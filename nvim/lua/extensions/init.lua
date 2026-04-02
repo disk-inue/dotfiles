@@ -121,9 +121,6 @@ local plugins = {
   {
     "sindrets/diffview.nvim",
     lazy = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
   },
   {
     "ldelossa/gh.nvim",
