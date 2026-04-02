@@ -76,5 +76,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- tailwindcss LSPはTailwind CSS v4環境でハングするため無効化
+-- v4対応版がリリースされたら解除する
+vim.lsp.enable("tailwindcss", false)
+
 -- サーバー設定をmason-lspconfigのhandlersに移動
 -- 個別の設定は全て削除
