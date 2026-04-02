@@ -96,9 +96,9 @@ local mappings = {
   {
     "<leader>gu",
     function()
-      require("gitsigns").undo_stage_hunk()
+      require("gitsigns").stage_hunk()
     end,
-    desc = "Undo Stage Hunk",
+    desc = "Unstage Hunk (on staged signs)",
   },
   {
     "<leader>gr",
@@ -165,9 +165,7 @@ local mappings = {
   },
   {
     "<leader>gg",
-    function()
-      require("lazygit").lazygit()
-    end,
+    "<cmd>LazyGit<cr>",
     desc = "LazyGit",
   },
   {
@@ -319,11 +317,6 @@ local mappings = {
     desc = "Code Action",
   },
   {
-    "<leader>lA",
-    "<cmd>Telescope lsp_code_actions<cr>",
-    desc = "Code Actions (Telescope)",
-  },
-  {
     "<leader>le",
     function()
       vim.diagnostic.open_float({ scope = "line" })
@@ -345,14 +338,14 @@ local mappings = {
   {
     "<leader>lj",
     function()
-      vim.diagnostic.goto_next({ float = true })
+      vim.diagnostic.jump({ count = 1, float = true })
     end,
     desc = "Next Diagnostic",
   },
   {
     "<leader>lk",
     function()
-      vim.diagnostic.goto_prev({ float = true })
+      vim.diagnostic.jump({ count = -1, float = true })
     end,
     desc = "Previous Diagnostic",
   },

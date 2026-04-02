@@ -25,7 +25,6 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    branch = "main",
     event = "BufReadPost",
     config = function()
       require("extensions.nvim-treesitter-context")
@@ -165,7 +164,6 @@ local plugins = {
   -- ファイル検索
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
     lazy = false,
     config = function()
       require("extensions.telescope")
@@ -335,13 +333,7 @@ local opts = {
     notify = false,
   },
   performance = {
-    cache = {
-      enabled = true,
-    },
-    reset_packpath = true,
     rtp = {
-      reset = true,
-      paths = {},
       disabled_plugins = {
         "gzip",
         "matchit",
@@ -386,7 +378,4 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
-  spec = plugins,
-  opts,
-})
+require("lazy").setup(plugins, opts)

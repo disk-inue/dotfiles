@@ -66,7 +66,7 @@ require("lualine").setup({
     lualine_c = {
       {
         "diagnostics",
-        sources = { "nvim_diagnostic", "nvim_lsp" },
+        sources = { "nvim_diagnostic" },
         sections = { "error", "warn", "info", "hint" },
         symbols = {
           error = " ",

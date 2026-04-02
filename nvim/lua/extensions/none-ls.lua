@@ -45,7 +45,7 @@ null_ls.setup({
   sources = sources,
   on_attach = function(client, bufnr)
     -- フォーマット機能がある場合は自動フォーマット設定
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       -- 保存時の自動フォーマット
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,

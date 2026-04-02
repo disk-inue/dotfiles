@@ -2,8 +2,8 @@
 -- extensions/which-key.luaを参照してください
 
 -- leader設定
-vim.api.nvim_set_var("mapleader", ",")
-vim.api.nvim_set_var("maplocalleader", "\\")
+vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
 
 -- Normal to Command (コマンド入力をより使いやすく)
 vim.keymap.set("n", ":", ";")

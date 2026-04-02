@@ -34,7 +34,6 @@ require("Comment").setup({
   mappings = {
     basic = true, -- 基本マッピング (gcc, gc[count]{motion} など)
     extra = true, -- 追加マッピング (gco, gcO, gcA)
-    extended = true, -- 拡張マッピング
   },
 
   -- コメント前の処理（言語に応じたコメントスタイルの適用）
