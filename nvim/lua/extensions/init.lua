@@ -16,6 +16,7 @@ local plugins = {
   -- コア機能
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     event = "BufReadPost",
     config = function()
@@ -24,6 +25,7 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    branch = "main",
     event = "BufReadPost",
     config = function()
       require("extensions.nvim-treesitter-context")
