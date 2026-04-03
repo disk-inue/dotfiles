@@ -34,10 +34,10 @@ MAIN_WORKTREE="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')
 CURRENT_WORKTREE="$(git rev-parse --show-toplevel 2>/dev/null)"
 
 # Copy .env and .env.local from main worktree (supports monorepo)
-find "$MAIN_WORKTREE" \( -name ".env" -o -name ".env.local" \) \
-  -not -path "*/node_modules/*" \
-  -not -path "*/.next/*" \
-  -not -path "*/dist/*" | while read -r src; do
+# Use -prune to skip heavy directories entirely (not just filter results)
+find "$MAIN_WORKTREE" \
+  \( -name node_modules -o -name .next -o -name dist -o -name .git -o -name .turbo -o -name .cache -o -name .pnpm-store -o -name repo \) -prune -o \
+  \( -name ".env" -o -name ".env.local" \) -print | while read -r src; do
   rel="${src#"$MAIN_WORKTREE"/}"
   dest="${CURRENT_WORKTREE}/${rel}"
   mkdir -p "$(dirname "$dest")"
